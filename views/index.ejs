@@ -103,6 +103,7 @@
       visibility: hidden;
       transform: translateY(20px);
     }
+
     /* Card Hover Effect */
     .card-hover {
       cursor: pointer;
@@ -162,8 +163,10 @@
       </div> -->
       <p class="md:text-xl text-lg mb-8 max-w-2xl mx-auto animate-fade-in">We buy houses in any condition, anywhere. Get a fair cash offer today-quick, hassle-free, and on your terms!</p>
       <div class="md:justify-center animate-fade-in md:flex">
-        <input class="px-10 py-4 rounded-lg md:rounded-r-none text-gray-800 w-96 focus:outline-none focus:ring-2 focus:ring-purple-500" type="text" placeholder="Enter property Address" id="home-address-field">
-        <button class="btn-primary px-8 py-3 md:py-4 block mx-auto md:mx-0 rounded mt-6 md:mt-0 md:rounded-l-none text-white hover:bg-purple-700 transition-colors text-md" onclick="carryAddress(document.getElementById('home-address-field').value)">Get Cash Offer</button>
+        <form action="." onsubmit="carryAddress(document.getElementById('home-address-field').value)">
+          <input class="px-10 py-4 rounded-lg md:rounded-r-none text-gray-800 w-96 focus:outline-none focus:ring-2 focus:ring-purple-500" type="text" placeholder="Enter property Address" id="home-address-field">
+          <button type="submit" class="btn-primary px-8 py-3 md:py-4 block mx-auto md:mx-0 rounded mt-6 md:mt-0 md:rounded-l-none text-white hover:bg-purple-700 transition-colors text-md">Get Cash Offer</button>
+        </form>
       </div>
     </div>
   </section>
@@ -251,40 +254,40 @@
   </section>
   <hr>
 
- <!-- How It Works Section -->
- <section id="how-it-works" class="bg-white py-24" style="scroll-margin-top: 80px;">
-  <div class="container mx-auto px-8">
-    <h2 class="text-4xl font-bold text-center mb-16">How It Works</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-      <!-- Step 1: Contact Us -->
-      <div class="bg-white p-10 rounded-lg shadow-lg text-center card-hover">
-        <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
-          <i class="fas fa-phone-alt text-white text-2xl"></i>
+  <!-- How It Works Section -->
+  <section id="how-it-works" class="bg-white py-24" style="scroll-margin-top: 80px;">
+    <div class="container mx-auto px-8">
+      <h2 class="text-4xl font-bold text-center mb-16">How It Works</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <!-- Step 1: Contact Us -->
+        <div class="bg-white p-10 rounded-lg shadow-lg text-center card-hover">
+          <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-phone-alt text-white text-2xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-6">Contact Us</h3>
+          <p class="text-gray-600">Fill out our form or give us a call. We’ll ask for a few details about your property.</p>
         </div>
-        <h3 class="text-2xl font-bold mb-6">Contact Us</h3>
-        <p class="text-gray-600">Fill out our form or give us a call. We’ll ask for a few details about your property.</p>
-      </div>
 
-      <!-- Step 2: Get a Fair Offer -->
-      <div class="bg-white p-10 rounded-lg shadow-lg text-center card-hover">
-        <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
-          <i class="fas fa-hand-holding-usd text-white text-2xl"></i>
+        <!-- Step 2: Get a Fair Offer -->
+        <div class="bg-white p-10 rounded-lg shadow-lg text-center card-hover">
+          <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-hand-holding-usd text-white text-2xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-6">Get a Fair Offer</h3>
+          <p class="text-gray-600">We’ll evaluate your property and make you a no-obligation cash offer within 24 hours.</p>
         </div>
-        <h3 class="text-2xl font-bold mb-6">Get a Fair Offer</h3>
-        <p class="text-gray-600">We’ll evaluate your property and make you a no-obligation cash offer within 24 hours.</p>
-      </div>
 
-      <!-- Step 3: Close on Your Timeline -->
-      <div class="bg-white p-10 rounded-lg shadow-lg text-center card-hover">
-        <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
-          <i class="fas fa-file-signature text-white text-2xl"></i>
+        <!-- Step 3: Close on Your Timeline -->
+        <div class="bg-white p-10 rounded-lg shadow-lg text-center card-hover">
+          <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-file-signature text-white text-2xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-6">Close on Your Timeline</h3>
+          <p class="text-gray-600">We close quickly and handle all the paperwork. You get paid on your schedule.</p>
         </div>
-        <h3 class="text-2xl font-bold mb-6">Close on Your Timeline</h3>
-        <p class="text-gray-600">We close quickly and handle all the paperwork. You get paid on your schedule.</p>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <!-- Testimonials Section -->
   <section class="py-24 bg-gray-800 text-gray-200" id="testimonials" style="scroll-margin-top: 90px;">
