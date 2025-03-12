@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="./css/typewriter.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollToPlugin.min.js"></script>
+
   <style>
     @font-face {
       font-family: 'customFont';
@@ -24,13 +26,13 @@
     }
 
     body {
-      font-family: 'customFont','Lato', sans-serif;
+      font-family: 'customFont', 'Lato', sans-serif;
     }
 
     h1,
     h2,
     h3 {
-      font-family: 'customFont','Montserrat', sans-serif;
+      font-family: 'customFont', 'Montserrat', sans-serif;
     }
 
     .btn-primary {
@@ -44,7 +46,7 @@
     }
 
     .hero-section {
-      background: linear-gradient(rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.6)), url('https://cdn.pixabay.com/photo/2022/01/26/04/47/house-6967908_1280.jpg');
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), url('https://cdn.pixabay.com/photo/2022/01/26/04/47/house-6967908_1280.jpg');
       background-size: cover;
       background-position: center;
     }
@@ -59,13 +61,13 @@
     }
 
     .gradient-text {
-      background: linear-gradient(45deg, #6D28D9, #8B5CF6);
+      background: linear-gradient(45deg, #dbd5e6, #8B5CF6);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     .services-image1 {
-      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), url('https://cdn.pixabay.com/photo/2016/12/26/13/16/backgrounds-1932041_1280.jpg');
+      background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.8)), url('https://cdn.pixabay.com/photo/2016/12/26/13/16/backgrounds-1932041_1280.jpg');
       background-size: cover;
       background-position: center;
     }
@@ -85,10 +87,40 @@
       overflow: hidden;
       line-height: 0;
     }
+
+    #back-to-top {
+      transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+    }
+
+    #back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    #back-to-top.hidden {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+    }
+    /* Card Hover Effect */
+    .card-hover {
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
   </style>
 </head>
 
 <body class="bg-[#F9FAFB]">
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="fixed bottom-8 right-8 p-4 bg-purple-600 text-white rounded-full shadow-lg hover:bg-purple-700 transition-all opacity-0 invisible">
+    <i class="fas fa-arrow-up text-xl"></i>
+  </button>
 
   <!-- Header -->
   <header class="navbar bg-white text-gray-800 sticky top-0 z-50 shadow-lg">
@@ -137,7 +169,7 @@
   </section>
 
   <!-- Services Section -->
-  <section id="services" class="py-24 text-gray-800" style="scroll-margin-top: 80px;">
+  <section id="services" class="py-24 bg-white text-gray-800" style="scroll-margin-top: 80px;">
     <div class="container mx-auto px-8">
       <h2 class="text-4xl font-bold text-center mb-16">We Provide Solutions for Every Scenario!</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
@@ -161,7 +193,7 @@
   </section>
 
   <!-- About Us Section -->
-  <section id="about" class="bg-gray-800 py-24 parallax" style="scroll-margin-top: 55px;">
+  <!-- <section id="about" class="bg-gray-800 py-24 parallax" style="scroll-margin-top: 55px;">
     <div class="container mx-auto">
       <h2 class="text-4xl font-bold text-center mb-16 text-gray-200">Sell Your Home Stress-Free with Lioness Homes</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 mx-6 gap-10 leading-loose font-thin">
@@ -177,31 +209,82 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 
-  <!-- How It Works Section -->
-  <section id="how-it-works" class="bg-white py-24 parallax2" style="scroll-margin-top: 80px;">
+  <!-- Section 1: Sell Your Home Stress-Free -->
+  <section id="sell-stress-free" class="bg-gray-800 py-24" style="scroll-margin-top: 80px;">
     <div class="container mx-auto px-8">
-      <h2 class="text-4xl font-bold text-center mb-16">How It Works</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-        <div class="bg-white p-10 rounded-lg shadow-lg text-center card-hover services-image1 cursor-pointer">
-          <span class="text-6xl font-bold bg-gray-200 text-gray-800 px-5 rounded">1</span>
-          <h3 class="text-2xl font-bold mb-6 text-gray-200 mt-8">Contact Us</h3>
-          <p class="text-gray-200">Fill out our form or give us a call. We’ll ask for a few details about your property.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+        <!-- Left Side: Picture -->
+        <div class="w-full overflow-hidden rounded-lg shadow-lg order-2 md:order-1">
+          <img class="w-full h-auto object-cover" src="https://environet.com.ph/wp-content/uploads/2024/04/Stress-Free-Life_How-Environet-Pest-Control-Brings-Peace-of-Mind-scaled.webp" alt="Sell Your Home Stress-Free">
         </div>
-        <div class="bg-white p-10 rounded-lg shadow-lg text-center card-hover services-image1 cursor-pointer">
-          <span class="text-6xl font-bold bg-gray-200 text-gray-800 px-5 rounded">2</span>
-          <h3 class="text-2xl font-bold mb-6 text-gray-200 mt-8">Get a Fair Offer</h3>
-          <p class="text-gray-200">We’ll evaluate your property and make you a no-obligation cash offer within 24 hours.</p>
-        </div>
-        <div class="bg-white p-10 rounded-lg shadow-lg text-center card-hover services-image1 cursor-pointer">
-          <span class="text-6xl font-bold bg-gray-200 text-gray-800 px-5 rounded">3</span>
-          <h3 class="text-2xl font-bold mb-6 text-gray-200 mt-8">Close on Your Timeline</h3>
-          <p class="text-gray-200">We close quickly and handle all the paperwork. You get paid on your schedule.</p>
+        <!-- Right Side: Words -->
+        <div class="text-left order-1 md:order-2">
+          <h2 class="text-4xl font-bold mb-8 text-gray-100">Sell Your Home Stress-Free</h2>
+          <p class="text-gray-300 mb-6">At Lioness Homes, we believe selling your home should be simple, fair, and stress-free. That’s why we buy houses as-is—no need for repairs, cleaning, or showings.</p>
+          <p class="text-gray-300 mb-6">We handle everything for you, including covering attorney fees and ensuring a smooth closing process.</p>
+          <a href="#contact" class="btn-primary px-8 py-3 rounded-lg text-white inline-block">Sell Now, No Hassle!</a>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- Section 2: The Lioness Homes Promise -->
+  <section id="lioness-promise" class="bg-gray-200 py-24" style="scroll-margin-top: 80px;">
+    <div class="container mx-auto px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+        <!-- Left Side: Words -->
+        <div class="text-left">
+          <h2 class="text-4xl font-bold mb-8">The Lioness Homes Promise</h2>
+          <p class="text-gray-600 mb-6">As a local, family-owned business with over 10 years of experience, we’ve helped hundreds of homeowners get fair cash offers while making the process effortless.</p>
+          <p class="text-gray-600 mb-6">And if you need help moving, we’ll take care of that free of charge—because we’re not just buying houses; we’re here to support our community.</p>
+          <p class="text-gray-600 mb-6">Honest, transparent, and dedicated to putting you first—that’s the Lioness Homes promise. Let’s make your next move easy.</p>
+          <a href="#contact" class="btn-primary px-8 py-3 rounded-lg text-white inline-block">Contact Us Today!</a>
+        </div>
+        <!-- Right Side: Picture -->
+        <div class="w-full overflow-hidden rounded-lg shadow-lg">
+          <img class="w-full object-cover min-h-[350px]" src="https://gardenrouteexclusiveproperties.com/wp-content/uploads/2024/08/113429.jpg" alt="The Lioness Homes Promise">
+        </div>
+      </div>
+    </div>
+  </section>
+  <hr>
+
+ <!-- How It Works Section -->
+ <section id="how-it-works" class="bg-white py-24" style="scroll-margin-top: 80px;">
+  <div class="container mx-auto px-8">
+    <h2 class="text-4xl font-bold text-center mb-16">How It Works</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+      <!-- Step 1: Contact Us -->
+      <div class="bg-white p-10 rounded-lg shadow-lg text-center card-hover">
+        <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
+          <i class="fas fa-phone-alt text-white text-2xl"></i>
+        </div>
+        <h3 class="text-2xl font-bold mb-6">Contact Us</h3>
+        <p class="text-gray-600">Fill out our form or give us a call. We’ll ask for a few details about your property.</p>
+      </div>
+
+      <!-- Step 2: Get a Fair Offer -->
+      <div class="bg-white p-10 rounded-lg shadow-lg text-center card-hover">
+        <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
+          <i class="fas fa-hand-holding-usd text-white text-2xl"></i>
+        </div>
+        <h3 class="text-2xl font-bold mb-6">Get a Fair Offer</h3>
+        <p class="text-gray-600">We’ll evaluate your property and make you a no-obligation cash offer within 24 hours.</p>
+      </div>
+
+      <!-- Step 3: Close on Your Timeline -->
+      <div class="bg-white p-10 rounded-lg shadow-lg text-center card-hover">
+        <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
+          <i class="fas fa-file-signature text-white text-2xl"></i>
+        </div>
+        <h3 class="text-2xl font-bold mb-6">Close on Your Timeline</h3>
+        <p class="text-gray-600">We close quickly and handle all the paperwork. You get paid on your schedule.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
   <!-- Testimonials Section -->
   <section class="py-24 bg-gray-800 text-gray-200" id="testimonials" style="scroll-margin-top: 90px;">
@@ -245,6 +328,7 @@
   </footer>
 
   <!-- GSAP Animations -->
+
   <script>
     gsap.registerPlugin(ScrollTrigger);
 
@@ -253,6 +337,7 @@
       opacity: 0,
       y: 50,
       duration: 1,
+      ease: "power2.out",
       scrollTrigger: {
         trigger: ".hero-section",
         start: "top 80%",
@@ -264,6 +349,7 @@
       y: 50,
       duration: 1,
       delay: 0.3,
+      ease: "power2.out",
       scrollTrigger: {
         trigger: ".hero-section",
         start: "top 80%",
@@ -275,6 +361,7 @@
       y: 50,
       duration: 1,
       delay: 0.6,
+      ease: "power2.out",
       scrollTrigger: {
         trigger: ".hero-section",
         start: "top 80%",
@@ -286,6 +373,7 @@
       opacity: 0,
       y: 50,
       duration: 1,
+      ease: "power2.out",
       scrollTrigger: {
         trigger: "#services",
         start: "top 80%",
@@ -296,41 +384,80 @@
       opacity: 0,
       y: 50,
       duration: 1,
-      stagger: 0.3,
+      stagger: 0.2,
+      ease: "power2.out",
       scrollTrigger: {
         trigger: "#services",
         start: "top 80%",
       },
     });
 
-    // About Us Section Animations
-    gsap.from("#about h2", {
+    // Sell Your Home Stress-Free Section Animations
+    gsap.from("#sell-stress-free h2", {
       opacity: 0,
       y: 50,
       duration: 1,
+      ease: "power2.out",
       scrollTrigger: {
-        trigger: "#about",
+        trigger: "#sell-stress-free",
         start: "top 80%",
       },
     });
 
-    gsap.from("#about p", {
+    gsap.from("#sell-stress-free p", {
       opacity: 0,
       y: 50,
       duration: 1,
-      stagger: 0.3,
+      stagger: 0.2,
+      ease: "power2.out",
       scrollTrigger: {
-        trigger: "#about",
+        trigger: "#sell-stress-free",
         start: "top 80%",
       },
     });
 
-    gsap.from("#about img", {
+    gsap.from("#sell-stress-free img", {
+      opacity: 0,
+      x: -50,
+      duration: 1,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: "#sell-stress-free",
+        start: "top 80%",
+      },
+    });
+
+    // Lioness Homes Promise Section Animations
+    gsap.from("#lioness-promise h2", {
+      opacity: 0,
+      y: 50,
+      duration: 1,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: "#lioness-promise",
+        start: "top 80%",
+      },
+    });
+
+    gsap.from("#lioness-promise p", {
+      opacity: 0,
+      y: 50,
+      duration: 1,
+      stagger: 0.2,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: "#lioness-promise",
+        start: "top 80%",
+      },
+    });
+
+    gsap.from("#lioness-promise img", {
       opacity: 0,
       x: 50,
       duration: 1,
+      ease: "power2.out",
       scrollTrigger: {
-        trigger: "#about",
+        trigger: "#lioness-promise",
         start: "top 80%",
       },
     });
@@ -340,6 +467,7 @@
       opacity: 0,
       y: 50,
       duration: 1,
+      ease: "power2.out",
       scrollTrigger: {
         trigger: "#how-it-works",
         start: "top 80%",
@@ -350,7 +478,8 @@
       opacity: 0,
       y: 50,
       duration: 1,
-      stagger: 0.3,
+      stagger: 0.2,
+      ease: "power2.out",
       scrollTrigger: {
         trigger: "#how-it-works",
         start: "top 80%",
@@ -358,23 +487,25 @@
     });
 
     // Testimonials Section Animations
-    gsap.from(".testimonials h2", {
+    gsap.from("#testimonials h2", {
       opacity: 0,
       y: 50,
       duration: 1,
+      ease: "power2.out",
       scrollTrigger: {
-        trigger: ".testimonials",
+        trigger: "#testimonials",
         start: "top 80%",
       },
     });
 
-    gsap.from(".testimonials .card-hover", {
+    gsap.from("#testimonials .card-hover", {
       opacity: 0,
       y: 50,
       duration: 1,
-      stagger: 0.3,
+      stagger: 0.2,
+      ease: "power2.out",
       scrollTrigger: {
-        trigger: ".testimonials",
+        trigger: "#testimonials",
         start: "top 80%",
       },
     });
@@ -384,6 +515,7 @@
       opacity: 0,
       y: 50,
       duration: 1,
+      ease: "power2.out",
       scrollTrigger: {
         trigger: "#contact",
         start: "top 80%",
@@ -394,6 +526,8 @@
       opacity: 0,
       y: 50,
       duration: 1,
+      stagger: 0.2,
+      ease: "power2.out",
       scrollTrigger: {
         trigger: "#contact",
         start: "top 80%",
@@ -405,7 +539,7 @@
     const mobileMenu = document.getElementById('mobile-menu');
 
     function hideNavbar() {
-      mobileMenu.classList.toggle('hidden')
+      mobileMenu.classList.toggle('hidden');
     }
 
     mobileMenuButton.addEventListener('click', () => {
@@ -426,6 +560,31 @@
       document.getElementById('contact-address-input').value = addressValue;
       window.location.href = "#contact";
     }
+
+    // Back to Top Button
+    const backToTopButton = document.getElementById('back-to-top');
+
+    // Show/hide button based on scroll position
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTopButton.classList.add('visible');
+        backToTopButton.classList.remove('hidden');
+      } else {
+        backToTopButton.classList.add('hidden');
+        backToTopButton.classList.remove('visible');
+      }
+    });
+
+    // Smooth scroll to top
+    backToTopButton.addEventListener('click', () => {
+      gsap.to(window, {
+        duration: 1,
+        scrollTo: {
+          y: 0
+        },
+        ease: "power2.out",
+      });
+    });
   </script>
   <script src="./js/typewriter.js"></script>
 </body>
