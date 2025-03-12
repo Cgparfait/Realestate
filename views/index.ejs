@@ -9,110 +9,43 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="./css/typewriter.css">
+  <link rel="stylesheet" href="./css/styles.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollToPlugin.min.js"></script>
-
   <style>
-    @font-face {
-      font-family: 'customFont';
-      src: url('./fonts/IBM Plex Sans.ttf') format('truetype'),
-        font-weight: normal;
-      font-style: normal;
+    .dotted-overlay {
+      background-image: radial-gradient(rgba(255, 255, 255, 0.3) 1px, transparent 0);
+      background-size: 80px 80px;
+      background-position: 0;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'customFont', 'Lato', sans-serif;
-    }
-
-    h1,
-    h2,
-    h3 {
-      font-family: 'customFont', 'Montserrat', sans-serif;
-    }
-
-    .btn-primary {
-      background: linear-gradient(45deg, #6D28D9, #8B5CF6);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 15px rgba(109, 40, 217, 0.3);
-    }
-
-    .hero-section {
-      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), url('https://cdn.pixabay.com/photo/2022/01/26/04/47/house-6967908_1280.jpg');
-      background-size: cover;
-      background-position: center;
-    }
-
-    .card-hover {
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .card-hover:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-    }
-
-    .gradient-text {
-      background: linear-gradient(45deg, #dbd5e6, #8B5CF6);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .services-image1 {
-      background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.8)), url('https://cdn.pixabay.com/photo/2016/12/26/13/16/backgrounds-1932041_1280.jpg');
-      background-size: cover;
-      background-position: center;
-    }
-
-    .contact {
-      background-color: #6D28D9;
-      background: linear-gradient(31, 41, 55, 0.9), rgba(31, 41, 55, 0.1), url('https://cdn.pixabay.com/photo/2016/11/29/06/56/abstract-1867937_1280.jpg');
-      background-size: cover;
-      background-position: center;
-    }
-
-    .custom-shape-divider-top-1741610239 {
+    .card-hover::after {
+      content: "";
+      width: 100%;
+      height: 100%;
       position: absolute;
       top: 0;
       left: 0;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.3) 1px, transparent 0);
+      background-size: 80px 80px;
+      background-position: 0;
+    }
+
+    #contact {
+      position: relative;
+    }
+
+    #contact::before {
+      content: "";
       width: 100%;
-      overflow: hidden;
-      line-height: 0;
-    }
-
-    #back-to-top {
-      transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
-    }
-
-    #back-to-top.visible {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-
-    #back-to-top.hidden {
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(20px);
-    }
-
-    /* Card Hover Effect */
-    .card-hover {
-      cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .card-hover:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-image: radial-gradient(rgba(196, 91, 91, 0.5) 1px, transparent 0);
+      background-size: 80px 80px;
+      background-position: 0;
     }
   </style>
 </head>
@@ -185,7 +118,7 @@
           <p class="mb-6">Struggling with property taxes or facing foreclosure? We’ll help you sell fast for cash and take care of the paperwork, making the process smooth and stress-free.</p>
           <a href="#contact" class="text-white font-semibold mt-4 inline-block hover:underline">Learn More →</a>
         </div>
-  
+
         <!-- Card 2: Probate Properties -->
         <div class="bg-gradient-to-br from-purple-600 to-indigo-600 p-10 rounded-lg shadow-lg text-center card-hover cursor-pointer text-white transform transition-all duration-300 hover:scale-105">
           <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -195,7 +128,7 @@
           <p class="mb-6">Inherited a home and unsure what to do next? We’ll guide you through the process and help you sell quickly for cash—no stress, no delays.</p>
           <a href="#contact" class="text-white font-semibold mt-4 inline-block hover:underline">Learn More →</a>
         </div>
-  
+
         <!-- Card 3: Distressed Properties -->
         <div class="bg-gradient-to-br from-purple-600 to-indigo-600 p-10 rounded-lg shadow-lg text-center card-hover cursor-pointer text-white transform transition-all duration-300 hover:scale-105">
           <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -229,7 +162,7 @@
   </section> -->
 
   <!-- Section 1: Sell Your Home Stress-Free -->
-  <section id="sell-stress-free" class="bg-gray-800 py-24" style="scroll-margin-top: 80px;">
+  <section id="sell-stress-free" class="bg-gray-800 py-24 dotted-overlay" style="scroll-margin-top: 80px;">
     <div class="container mx-auto px-8">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         <!-- Left Side: Picture -->
@@ -274,7 +207,7 @@
       <h2 class="text-4xl font-bold text-center mb-16">How It Works</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
         <!-- Step 1: Contact Us -->
-        <div class="bg-white p-10 rounded-lg shadow-lg text-center card-hover">
+        <div class="bg-white p-10 rounded-lg shadow-lg text-center card-hover border border-gray-100">
           <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
             <i class="fas fa-phone-alt text-white text-2xl"></i>
           </div>
@@ -283,7 +216,7 @@
         </div>
 
         <!-- Step 2: Get a Fair Offer -->
-        <div class="bg-white p-10 rounded-lg shadow-lg text-center card-hover">
+        <div class="bg-white p-10 rounded-lg shadow-lg text-center card-hover border border-gray-100">
           <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
             <i class="fas fa-hand-holding-usd text-white text-2xl"></i>
           </div>
@@ -292,7 +225,7 @@
         </div>
 
         <!-- Step 3: Close on Your Timeline -->
-        <div class="bg-white p-10 rounded-lg shadow-lg text-center card-hover">
+        <div class="bg-white p-10 rounded-lg shadow-lg text-center card-hover border border-gray-100">
           <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
             <i class="fas fa-file-signature text-white text-2xl"></i>
           </div>
@@ -304,7 +237,7 @@
   </section>
 
   <!-- Testimonials Section -->
-  <section class="py-24 bg-gray-800 text-gray-200" id="testimonials" style="scroll-margin-top: 90px;">
+  <section class="py-24 bg-gray-800 text-gray-200 dotted-overlay" id="testimonials" style="scroll-margin-top: 90px;">
     <div class="container mx-auto px-8">
       <h2 class="text-4xl font-bold text-center mb-16">What Our Clients Say</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-10 cursor-pointer">
@@ -321,7 +254,7 @@
   </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="text-gray-800 py-24 bg-none" style="scroll-margin-top: 30px;">
+  <section id="contact" class="text-gray-800 py-24" style="scroll-margin-top: 30px;">
     <div class="container mx-auto px-8">
       <h2 class="text-4xl font-bold text-center mb-16">Contact Us</h2>
       <form class="max-w-2xl mx-auto" method="post" action="/send-email">
@@ -331,7 +264,7 @@
           <input type="text" name="phone" placeholder="Your Phone number" class="w-full px-8 py-4 mb-6 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-purple-500 border">
           <input type="email" name="email" placeholder="Your Email" class="w-full px-8 py-4 mb-6 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-purple-500 border">
         </div>
-        <textarea placeholder="Your Message" name="message" class="w-full px-8 py-4 mb-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border h-32 font-bold text-gray-700"></textarea>
+        <textarea placeholder="Your Message" name="message" class="w-full px-8 py-4 mb-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border h-32  text-gray-700"></textarea>
         <button type="submit" class="btn-primary px-10 py-4 rounded-lg text-white font-bold w-full">Send Message</button>
       </form>
     </div>
@@ -346,263 +279,7 @@
 
   <!-- GSAP Animations -->
 
-  <script>
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Hero Section Animations
-    gsap.from(".hero-section h1", {
-      opacity: 0,
-      y: 50,
-      duration: 1,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: ".hero-section",
-        start: "top 80%",
-      },
-    });
-
-    gsap.from(".hero-section p", {
-      opacity: 0,
-      y: 50,
-      duration: 1,
-      delay: 0.3,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: ".hero-section",
-        start: "top 80%",
-      },
-    });
-
-    gsap.from(".hero-section form", {
-      opacity: 0,
-      y: 50,
-      duration: 1,
-      delay: 0.6,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: ".hero-section",
-        start: "top 80%",
-      },
-    });
-
-    // Services Section Animations
-    gsap.from("#services h2", {
-      opacity: 0,
-      y: 50,
-      duration: 1,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: "#services",
-        start: "top 80%",
-      },
-    });
-
-    gsap.from("#services .card-hover", {
-      opacity: 0,
-      y: 50,
-      duration: 1,
-      stagger: 0.2,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: "#services",
-        start: "top 80%",
-      },
-    });
-
-    // Sell Your Home Stress-Free Section Animations
-    gsap.from("#sell-stress-free h2", {
-      opacity: 0,
-      y: 50,
-      duration: 1,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: "#sell-stress-free",
-        start: "top 80%",
-      },
-    });
-
-    gsap.from("#sell-stress-free p", {
-      opacity: 0,
-      y: 50,
-      duration: 1,
-      stagger: 0.2,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: "#sell-stress-free",
-        start: "top 80%",
-      },
-    });
-
-    gsap.from("#sell-stress-free img", {
-      opacity: 0,
-      x: -50,
-      duration: 1,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: "#sell-stress-free",
-        start: "top 80%",
-      },
-    });
-
-    // Lioness Homes Promise Section Animations
-    gsap.from("#lioness-promise h2", {
-      opacity: 0,
-      y: 50,
-      duration: 1,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: "#lioness-promise",
-        start: "top 80%",
-      },
-    });
-
-    gsap.from("#lioness-promise p", {
-      opacity: 0,
-      y: 50,
-      duration: 1,
-      stagger: 0.2,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: "#lioness-promise",
-        start: "top 80%",
-      },
-    });
-
-    gsap.from("#lioness-promise img", {
-      opacity: 0,
-      x: 50,
-      duration: 1,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: "#lioness-promise",
-        start: "top 80%",
-      },
-    });
-
-    // How It Works Section Animations
-    gsap.from("#how-it-works h2", {
-      opacity: 0,
-      y: 50,
-      duration: 1,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: "#how-it-works",
-        start: "top 80%",
-      },
-    });
-
-    gsap.from("#how-it-works .card-hover", {
-      opacity: 0,
-      y: 50,
-      duration: 1,
-      stagger: 0.2,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: "#how-it-works",
-        start: "top 80%",
-      },
-    });
-
-    // Testimonials Section Animations
-    gsap.from("#testimonials h2", {
-      opacity: 0,
-      y: 50,
-      duration: 1,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: "#testimonials",
-        start: "top 80%",
-      },
-    });
-
-    gsap.from("#testimonials .card-hover", {
-      opacity: 0,
-      y: 50,
-      duration: 1,
-      stagger: 0.2,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: "#testimonials",
-        start: "top 80%",
-      },
-    });
-
-    // Contact Section Animations
-    gsap.from("#contact h2", {
-      opacity: 0,
-      y: 50,
-      duration: 1,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: "#contact",
-        start: "top 80%",
-      },
-    });
-
-    gsap.from("#contact form", {
-      opacity: 0,
-      y: 50,
-      duration: 1,
-      stagger: 0.2,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: "#contact",
-        start: "top 80%",
-      },
-    });
-
-    // Mobile Menu Toggle
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    function hideNavbar() {
-      mobileMenu.classList.toggle('hidden');
-    }
-
-    mobileMenuButton.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-    });
-
-    // Navbar Scroll Effect
-    const navbar = document.querySelector('.navbar');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
-    });
-
-    function carryAddress(addressValue) {
-      document.getElementById('contact-address-input').value = addressValue;
-      window.location.href = "#contact";
-    }
-
-    // Back to Top Button
-    const backToTopButton = document.getElementById('back-to-top');
-
-    // Show/hide button based on scroll position
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 300) {
-        backToTopButton.classList.add('visible');
-        backToTopButton.classList.remove('hidden');
-      } else {
-        backToTopButton.classList.add('hidden');
-        backToTopButton.classList.remove('visible');
-      }
-    });
-
-    // Smooth scroll to top
-    backToTopButton.addEventListener('click', () => {
-      gsap.to(window, {
-        duration: 1,
-        scrollTo: {
-          y: 0
-        },
-        ease: "power2.out",
-      });
-    });
-  </script>
+  <script src="./js/script.js"></script>
   <script src="./js/typewriter.js"></script>
 </body>
 
