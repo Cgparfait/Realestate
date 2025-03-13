@@ -36,7 +36,7 @@
       position: relative;
     }
 
-    #contact::before {
+    /* #contact::before {
       content: "";
       width: 100%;
       height: 100%;
@@ -46,16 +46,17 @@
       background-image: radial-gradient(rgba(196, 91, 91, 0.5) 1px, transparent 0);
       background-size: 80px 80px;
       background-position: 0;
-    }
+    } */
   </style>
 </head>
 
-<body class="bg-[#F9FAFB]">
+<body class="bg-[#F9FAFB] text-md">
   <!-- Back to Top Button -->
   <button id="back-to-top" class="fixed bottom-8 right-8 w-14 h-14 bg-purple-600 text-white rounded-full shadow-lg hover:bg-purple-700 transition-all opacity-0 invisible z-50">
     <i class="fas fa-arrow-up text-xl"></i>
   </button>
 
+  <div class="bg-gray-800 text-gray-200 flex px-10 py-1">Email: merhawitabdala@yahoo.com | Phone: (937) 818-3427</div>
   <!-- Header -->
   <header class="navbar bg-white text-gray-800 sticky top-0 z-50 shadow-lg">
     <div class="container mx-auto flex justify-between items-center px-8">
@@ -96,7 +97,7 @@
       <!-- <div class="typewriter-container">
         <span id="typewriter-text" class="typewriter"></span>
       </div> -->
-      <p class="md:text-xl text-lg mb-8 max-w-2xl mx-auto animate-fade-in">We buy houses in any condition, anywhere. Get a fair cash offer today-quick, hassle-free, and on your terms!</p>
+      <p class="md:text-xl mb-8 max-w-2xl mx-auto animate-fade-in">We buy houses in any condition, anywhere. Get a fair cash offer today-quick, hassle-free, and on your terms!</p>
       <div class="md:justify-center animate-fade-in md:flex">
         <input class="px-10 py-4 rounded-lg md:rounded-r-none text-gray-800 w-[98%] md:w-96 focus:outline-none focus:ring-2 focus:ring-purple-500" type="text" placeholder="Enter property Address" id="home-address-field" onkeydown="if(event.key === 'Enter') { carryAddress(document.getElementById('home-address-field').value)}">
         <button class="btn-primary px-8 py-3 md:py-4 block mx-auto md:mx-0 rounded mt-6 md:mt-0 md:rounded-l-none text-white hover:bg-purple-700 transition-colors text-md" onclick="carryAddress(document.getElementById('home-address-field').value)">Get Cash Offer</button>
@@ -202,17 +203,18 @@
   <hr>
 
   <!-- How It Works Section -->
-  <section id="how-it-works" class="bg-white py-24" style="scroll-margin-top: 80px;">
+  <section id="how-it-works" class="bg-white py-24 leading-loose" style="scroll-margin-top: 80px;">
     <div class="container mx-auto px-8">
-      <h2 class="text-4xl font-bold text-center mb-16">How It Works</h2>
+      <h2 class="text-4xl font-bold text-center mb-6">How It Works</h2>
+      <p class="text-center mb-12 text-lg text-gray-500 font-semibold">Selling your home shouldn’t be stressful or complicated. We make it simple, fast, and hassle-free!</p>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
         <!-- Step 1: Contact Us -->
         <div class="bg-white p-10 rounded-lg shadow-lg text-center card-hover border border-gray-100">
           <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
             <i class="fas fa-phone-alt text-white text-2xl"></i>
           </div>
-          <h3 class="text-2xl font-bold mb-6">Contact Us</h3>
-          <p class="text-gray-600">Fill out our form or give us a call. We’ll ask for a few details about your property.</p>
+          <h3 class="text-xl font-bold mb-6 text-gray-800">Reach Out to Us</h3>
+          <p class="text-gray-600">Getting started is easy! Fill out our quick online form or give us a call. Tell us a few details about your property, and our team will get to work right away. No staging, no repairs—just a straightforward conversation about your home.</p>
         </div>
 
         <!-- Step 2: Get a Fair Offer -->
@@ -220,8 +222,8 @@
           <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
             <i class="fas fa-hand-holding-usd text-white text-2xl"></i>
           </div>
-          <h3 class="text-2xl font-bold mb-6">Get a Fair Offer</h3>
-          <p class="text-gray-600">We’ll evaluate your property and make you a no-obligation cash offer within 24 hours.</p>
+          <h3 class="text-xl font-bold mb-6 text-gray-800">Competitive Cash Offer</h3>
+          <p class="text-gray-600">We assess your property and provide a fair, no-obligation cash offer—often within 24 hours! No waiting, no hidden fees, and no lengthy bank approvals—just a simple offer that works for you.</p>
         </div>
 
         <!-- Step 3: Close on Your Timeline -->
@@ -229,8 +231,8 @@
           <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
             <i class="fas fa-file-signature text-white text-2xl"></i>
           </div>
-          <h3 class="text-2xl font-bold mb-6">Close on Your Timeline</h3>
-          <p class="text-gray-600">We close quickly and handle all the paperwork. You get paid on your schedule.</p>
+          <h3 class="text-xl font-bold mb-6 text-gray-800">Close on Your Timeline</h3>
+          <p class="text-gray-600">Need to sell fast? We can close in as little as 7 days. Need more time? No problem! We work around your schedule. Plus, we handle all the paperwork and cover closing costs, so you walk away with cash in hand and peace of mind.</p>
         </div>
       </div>
     </div>
