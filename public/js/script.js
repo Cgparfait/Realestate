@@ -245,11 +245,5 @@ window.addEventListener('scroll', () => {
 
 // Smooth scroll to top
 backToTopButton.addEventListener('click', () => {
-  gsap.to(window, {
-    duration: 1,
-    scrollTo: {
-      y: 0
-    },
-    ease: "power2.out",
-  });
+  window.location.href = "#";
 });
