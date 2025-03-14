@@ -247,3 +247,121 @@ window.addEventListener('scroll', () => {
 backToTopButton.addEventListener('click', () => {
   window.location.href = "#";
 });
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  const form = document.getElementById('contact-form');
+  const addressInput = document.getElementById('contact-address-input');
+  const nameInput = document.getElementById('contact-name-input');
+  const phoneInput = document.getElementById('contact-phone-input');
+  const emailInput = document.getElementById('contact-email-input');
+  const messageInput = document.getElementById('contact-message-input');
+
+  // Validation functions
+  function validateAddress(address) {
+    return address.trim().length > 0;
+  }
+
+  function validateName(name) {
+    return name.trim().length > 0;
+  }
+
+  function validatePhone(phone) {
+    const phoneRegex = /^\d{10}$/; // Simple 10-digit phone number validation
+    return phoneRegex.test(phone);
+  }
+
+  function validateEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+
+  function validateMessage(message) {
+    return message.trim().length > 0;
+  }
+
+
+
+
+  // Real-time validation
+  function validateInput(input, validationFn, errorMessage) {
+    const isValid = validationFn(input.value);
+    if (!isValid) {
+      input.classList.add('border-2');      
+      input.classList.add('border-red-500');
+      input.setCustomValidity(errorMessage);
+    } else {
+      input.classList.remove('border-2');      
+      input.classList.remove('border-red-500');
+      input.setCustomValidity('');
+    }
+    input.reportValidity();
+  }
+
+  // Event listeners for real-time validation
+  addressInput.addEventListener('input', () => {
+    validateInput(addressInput, validateAddress, 'Please enter a valid property address.');
+    console.log(addressInput.value);
+  });
+
+  nameInput.addEventListener('input', () => {
+    validateInput(nameInput, validateName, 'Please enter your name.');
+  });
+
+  phoneInput.addEventListener('input', () => {
+    validateInput(phoneInput, validatePhone, 'Please enter a valid 10-digit phone number.');
+  });
+
+  emailInput.addEventListener('input', () => {
+    validateInput(emailInput, validateEmail, 'Please enter a valid email address.');
+  });
+
+  messageInput.addEventListener('input', () => {
+    validateInput(messageInput, validateMessage, 'Please enter a message.');
+  });
+
+  // Form submission validation
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    let isFormValid = true;
+
+    if (!validateAddress(addressInput.value)) {
+      validateInput(addressInput, validateAddress, 'Please enter a valid property address.');
+      isFormValid = false;
+    }
+
+    if (!validateName(nameInput.value)) {
+      validateInput(nameInput, validateName, 'Please enter your name.');
+      isFormValid = false;
+    }
+
+    if (!validatePhone(phoneInput.value)) {
+      validateInput(phoneInput, validatePhone, 'Please enter a valid 10-digit phone number.');
+      isFormValid = false;
+    }
+
+    if (!validateEmail(emailInput.value)) {
+      validateInput(emailInput, validateEmail, 'Please enter a valid email address.');
+      isFormValid = false;
+    }
+
+    if (!validateMessage(messageInput.value)) {
+      validateInput(messageInput, validateMessage, 'Please enter a message.');
+      isFormValid = false;
+    }
+
+    if (isFormValid) {
+      const data = JSON.stringify({
+        address: addressInput.value,
+        name: nameInput.value,
+        phone: phoneInput.value,
+        email: emailInput.value,
+        message: messageInput.value,
+      })
+      const blob = new Blob([data], { type: "application/json" });
+      navigator.sendBeacon("/send-email", blob);
+      document.getElementById("model").classList.remove("hidden");
+    }
+  });
+});
