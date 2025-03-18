@@ -5,11 +5,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>We Buy Any House | Fast, Fair, and Hassle-Free</title>
-  <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="./css/typewriter.css">
   <link rel="stylesheet" href="./css/styles.css">
+  <link rel="stylesheet" href="./css/tailwind.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollToPlugin.min.js"></script>
@@ -25,73 +25,11 @@
 
     gtag('config', 'G-1RPWJL721K');
   </script>
-  <style>
-    .dotted-overlay {
-      background-image: radial-gradient(rgba(255, 255, 255, 0.3) 1px, transparent 0);
-      background-size: 80px 80px;
-      background-position: 0;
-    }
-
-    .card-hover::after {
-      content: "";
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: -1000;
-      background-image: radial-gradient(rgba(255, 255, 255, 0.3) 1px, transparent 0);
-      background-size: 80px 80px;
-      background-position: 0;
-    }
-
-    #contact {
-      position: relative;
-    }
-
-    /* #contact::before {
-      content: "";
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      background-image: radial-gradient(rgba(196, 91, 91, 0.5) 1px, transparent 0);
-      background-size: 80px 80px;
-      background-position: 0;
-    } */
-
-    .top-header a {
-      transition: all 0.3s ease;
-      /* Light purple for better contrast */
-    }
-
-    .header-icon {
-      width: 16px;
-      height: 16px;
-      margin-right: 8px;
-      fill: currentColor;
-      /* Ensures icons match the text color */
-    }
-
-    @media (max-width: 640px) {
-      .top-header {
-        font-size: 0.75rem;
-        padding: 0.5rem 1rem;
-      }
-
-      .header-icon {
-        width: 14px;
-        height: 14px;
-        margin-right: 6px;
-      }
-    }
-  </style>
 </head>
 
 <body class="bg-[#F9FAFB] text-md">
   <!-- Back to Top Button -->
-  <button id="back-to-top" class="fixed bottom-8 right-8 w-14 h-14 bg-purple-600 text-white rounded-full shadow-lg hover:bg-purple-700 transition-all opacity-0 invisible z-50">
+  <button id="back-to-top" class="to-top-button">
     <i class="fas fa-arrow-up text-xl"></i>
   </button>
 
@@ -109,15 +47,15 @@
       <p class="text-gray-600 mb-6">Your message has been sent successfully. We typically reply within <span class="font-semibold">24 hours or less</span>.</p>
 
       <!-- Back to Home Button -->
-      <a href="/" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition-all" onclick="document.getElementById('model').classList.add('hidden')">
+      <a href="/" class="bg-amber-400 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition-all" onclick="document.getElementById('model').classList.add('hidden')">
         Back to Home
       </a>
     </div>
   </div>
 
-  <div class="top-header bg-purple-600">
+  <div class="top-header bg-gradient-to-l from-amber-400 via-yellow-500 to-amber-600">
     <div class="container mx-auto px-4">
-      <div class="flex items-center justify-between py-2">
+      <div class="flex items-center justify-between py-1 text-sm">
         <!-- Contact Info -->
         <div class="flex items-center space-x-6 ">
           <a href="mailto:merhawitabdala@yahoo.com" class="flex items-center text-gray-100 hover:text-white">
@@ -139,7 +77,7 @@
     </div>
   </div>
   <!-- Header -->
-  <header class="navbar bg-white text-gray-800 sticky top-0 z-50 shadow-lg">
+  <header class="navbar border-b-4 border-amber-400 sticky top-0 bg-white z-50 shadow-lg">
     <div class="container mx-auto flex justify-between items-center px-8">
       <div class="flex items-center py-2">
         <a href="/">
@@ -148,12 +86,12 @@
       </div>
       <!-- Desktop Nav -->
       <nav class="hidden lg:flex space-x-10">
-        <a href="#home" class="text-gray-900 transition-colors hover:text-purple-600" onclick="mobileMenu.classList.toggle('hidden')">Home</a>
-        <a href="#services" class="text-gray-900 transition-colors hover:text-purple-600" onclick="mobileMenu.classList.toggle('hidden')">Services</a>
-        <a href="#sell-stress-free" class="text-gray-900 transition-colors hover:text-purple-600">About Us</a>
-        <a href="#how-it-works" class="text-gray-900 transition-colors hover:text-purple-600">How It Works</a>
-        <a href="#testimonials" class="text-gray-900 transition-colors hover:text-purple-600">Testimonials</a>
-        <a href="#contact" class="text-gray-900 transition-colors hover:text-purple-600">Contact</a>
+        <a href="#home" class="transition-colors hover:text-purple-600" onclick="mobileMenu.classList.toggle('hidden')">Home</a>
+        <a href="#services" class="transition-colors hover:text-purple-600" onclick="mobileMenu.classList.toggle('hidden')">Services</a>
+        <a href="#sell-stress-free" class="transition-colors hover:text-purple-600">About Us</a>
+        <a href="#how-it-works" class="transition-colors hover:text-purple-600">How It Works</a>
+        <a href="#testimonials" class="transition-colors hover:text-purple-600">Testimonials</a>
+        <a href="#contact" class="transition-colors hover:text-purple-600">Contact</a>
       </nav>
       <!-- Mobile Menu Button -->
       <button id="mobile-menu-button" class="lg:hidden text-gray-800 focus:outline-none">
@@ -186,43 +124,40 @@
     </div>
   </section>
 
+
+
   <!-- Services Section -->
-  <section id="services" class="py-24 bg-white text-gray-800" style="scroll-margin-top: 80px;">
+  <section id="services" class="py-16 bg-white text-gray-800" style="scroll-margin-top: 80px;">
     <div class="container mx-auto px-8">
       <h2 class="text-4xl font-bold text-center mb-16">We Provide Solutions for Every Scenario!</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-        <!-- Card 1: Behind on Taxes -->
-        <div class="bg-gradient-to-br from-purple-600 to-indigo-600 p-10 rounded-lg shadow-lg text-center card-hover cursor-pointer text-white transform transition-all duration-300 hover:scale-105">
-          <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
-            <i class="fas fa-file-invoice-dollar text-3xl"></i>
-          </div>
-          <h3 class="text-2xl font-bold mb-6">Behind on Taxes?</h3>
-          <p class="mb-6">Struggling with property taxes or facing foreclosure? We’ll help you sell fast for cash and take care of the paperwork, making the process smooth and stress-free.</p>
-          <a href="#contact" class="text-white font-semibold mt-4 inline-block hover:underline">Learn More →</a>
-        </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-        <!-- Card 2: Probate Properties -->
-        <div class="bg-gradient-to-br from-purple-600 to-indigo-600 p-10 rounded-lg shadow-lg text-center card-hover cursor-pointer text-white transform transition-all duration-300 hover:scale-105">
-          <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
-            <i class="fas fa-home text-3xl"></i>
+        <% for(i=0; i < 6; i++){ service = services[i]%>
+        <!-- Accordion Item 1: Behind on Taxes -->
+        <div class=" text-gray-600 border-amber-100 border cursor-pointer p-6 rounded-lg shadow-md">
+          <button class="w-full text-left flex justify-between items-center focus:outline-none">
+            <div class="flex items-center">
+              <div class="w-10 h-10 bg-gradient-to-<%= i % 2 === 0 ? "b" : "t" %> from-amber-400 via-yellow-500 to-amber-600 rounded-full flex items-center justify-center mr-4">
+                <i class="fas fa-file-invoice-dollar text-white text-xl"></i>
+              </div>
+              <h3 class="text-lg font-bold"><%= service.title %></h3>
+            </div>
+          </button>
+          <div class="accordion-content mt-4 flex flex-col items-center">
+            <p class=""><%= service.description %></p>
+            <a href="#contact" class="text-amber-800 hover:underline mt-4 inline-block">Learn More →</a>
           </div>
-          <h3 class="text-2xl font-bold mb-6">Probate Properties</h3>
-          <p class="mb-6">Inherited a home and unsure what to do next? We’ll guide you through the process and help you sell quickly for cash—no stress, no delays.</p>
-          <a href="#contact" class="text-white font-semibold mt-4 inline-block hover:underline">Learn More →</a>
         </div>
+        <% }%>
 
-        <!-- Card 3: Distressed Properties -->
-        <div class="bg-gradient-to-br from-purple-600 to-indigo-600 p-10 rounded-lg shadow-lg text-center card-hover cursor-pointer text-white transform transition-all duration-300 hover:scale-105">
-          <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
-            <i class="fas fa-tools text-3xl"></i>
-          </div>
-          <h3 class="text-2xl font-bold mb-6">Distressed Properties</h3>
-          <p class="mb-6">Sell your home as-is, no repairs or cleaning needed! Get a fair, hassle-free cash offer with no hidden fees.</p>
-          <a href="#contact" class="text-white font-semibold mt-4 inline-block hover:underline">Learn More →</a>
-        </div>
+        <!-- Add more accordion items here following the same structure -->
+      </div>
+      <div class="flex justify-center w-full">
+        <a href="#contact" class="text-amber-800 mx-auto hover:underline mt-8 mb-14 inline-block">See More Services →</a>
       </div>
     </div>
   </section>
+
 
   <!-- About Us Section -->
   <!-- <section id="about" class="bg-gray-800 py-24 parallax" style="scroll-margin-top: 55px;">
@@ -253,7 +188,7 @@
         </div>
         <!-- Right Side: Words -->
         <div class="text-left order-1 md:order-2">
-          <h2 class="text-4xl font-bold mb-8 text-gray-100">Sell Your Home Stress-Free</h2>
+          <h2 class="text-4xl font-bold mb-8 gradient-text">Sell Your Home Stress-Free</h2>
           <p class="text-gray-300 mb-6">At Lioness Homes, we believe selling your home should be simple, fair, and stress-free. That’s why we buy houses as-is—no need for repairs, cleaning, or showings.</p>
           <p class="text-gray-300 mb-6">We handle everything for you, including covering attorney fees and ensuring a smooth closing process.</p>
           <a href="#contact" class="btn-primary px-8 py-3 rounded-lg text-white inline-block">Sell Now, No Hassle!</a>
@@ -268,7 +203,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         <!-- Left Side: Words -->
         <div class="text-left">
-          <h2 class="text-4xl font-bold mb-8">The Lioness Homes Promise</h2>
+          <h2 class="text-4xl font-bold mb-8 gradient-text">The Lioness Homes Promise</h2>
           <p class="text-gray-600 mb-6">As a local, family-owned business with over 10 years of experience, we’ve helped hundreds of homeowners get fair cash offers while making the process effortless.</p>
           <p class="text-gray-600 mb-6">And if you need help moving, we’ll take care of that free of charge—because we’re not just buying houses; we’re here to support our community.</p>
           <p class="text-gray-600 mb-6">Honest, transparent, and dedicated to putting you first—that’s the Lioness Homes promise. Let’s make your next move easy.</p>
@@ -288,7 +223,7 @@
   <section class="bg-gray-800 py-16">
     <div class="container mx-auto px-6">
       <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-white mb-4">Why Choose Us?</h2>
+        <h2 class="text-3xl font-bold gradient-text mb-4">Why Choose Us?</h2>
         <p class="text-gray-300 max-w-2xl mx-auto">We make selling your home simple, fast, and stress-free. Here’s why homeowners trust us:</p>
       </div>
 
@@ -333,7 +268,7 @@
 
       <!-- Call to Action -->
       <div class="text-center mt-12">
-        <p class="text-gray-300 text-lg mb-6">Ready to sell? Contact us today and <a href="#contact" class="text-purple-500 hover:underline">get your cash offer!</a></p>
+        <p class="text-gray-300 text-lg mb-6">Ready to sell? Contact us today and <a href="#contact" class="text-amber-400 hover:underline">get your cash offer!</a></p>
       </div>
     </div>
   </section>
@@ -345,8 +280,8 @@
       <p class="text-center mb-12 text-lg text-gray-500 font-semibold">Selling your home shouldn’t be stressful or complicated. We make it simple, fast, and hassle-free!</p>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
         <!-- Step 1: Contact Us -->
-        <div class="bg-white p-10 rounded-lg shadow-lg text-center card-hover border border-gray-100">
-          <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
+        <div class="bg-white p-10 rounded-lg shadow-lg text-center card-hover border border-amber-200">
+          <div class="w-16 h-16 bg-gradient-to-t from-amber-400 via-yellow-500 to-amber-600 rounded-full flex items-center justify-center mx-auto mb-6">
             <i class="fas fa-phone-alt text-white text-2xl"></i>
           </div>
           <h3 class="text-xl font-bold mb-6 text-gray-800">Reach Out to Us</h3>
@@ -354,8 +289,8 @@
         </div>
 
         <!-- Step 2: Get a Fair Offer -->
-        <div class="bg-white p-10 rounded-lg shadow-lg text-center card-hover border border-gray-100">
-          <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
+        <div class="bg-white p-10 rounded-lg shadow-lg text-center card-hover border border-amber-200">
+          <div class="w-16 h-16 bg-gradient-to-l from-amber-400 via-yellow-500 to-amber-600 rounded-full flex items-center justify-center mx-auto mb-6">
             <i class="fas fa-hand-holding-usd text-white text-2xl"></i>
           </div>
           <h3 class="text-xl font-bold mb-6 text-gray-800">Competitive Cash Offer</h3>
@@ -363,8 +298,8 @@
         </div>
 
         <!-- Step 3: Close on Your Timeline -->
-        <div class="bg-white p-10 rounded-lg shadow-lg text-center card-hover border border-gray-100">
-          <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
+        <div class="bg-white p-10 rounded-lg shadow-lg text-center card-hover border border-amber-200">
+          <div class="w-16 h-16 bg-gradient-to-b from-amber-400 via-yellow-500 to-amber-600 rounded-full flex items-center justify-center mx-auto mb-6">
             <i class="fas fa-file-signature text-white text-2xl"></i>
           </div>
           <h3 class="text-xl font-bold mb-6 text-gray-800">Close on Your Timeline</h3>
@@ -377,7 +312,7 @@
   <!-- Testimonials Section -->
   <section class="py-24 bg-gray-800 text-gray-200 dotted-overlay" id="testimonials" style="scroll-margin-top: 90px;">
     <div class="container mx-auto px-8">
-      <h2 class="text-4xl font-bold text-center mb-16">What Our Clients Say</h2>
+      <h2 class="text-4xl font-bold text-center mb-16 gradient-text">What Our Clients Say</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-10 cursor-pointer">
         <div class="bg-white p-10 rounded-lg shadow-lg card-hover">
           <p class="text-gray-600 mb-6">"They bought my house even though I was in foreclosure. The process was so easy and stress-free!"</p>
@@ -475,12 +410,6 @@
       </div>
     </div>
   </footer>
-
-
-
-  <script>
-
-  </script>
   <!-- GSAP Animations -->
   <script src="./js/script.js"></script>
   <script src="./js/typewriter.js"></script>
