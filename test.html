@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Services | We Buy Any House</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./css/typewriter.css">
+  <link rel="stylesheet" href="./css/styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollToPlugin.min.js"></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1RPWJL721K"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-1RPWJL721K');
+  </script>
+  <style>
+    .dotted-overlay {
+      background-image: radial-gradient(rgba(255, 255, 255, 0.3) 1px, transparent 0);
+      background-size: 80px 80px;
+      background-position: 0;
+    }
+    .card-hover::after {
+      content: "";
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1000;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.3) 1px, transparent 0);
+      background-size: 80px 80px;
+      background-position: 0;
+    }
+  </style>
+</head>
+<body class="bg-[#F9FAFB] text-md">
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="fixed bottom-8 right-8 w-14 h-14 bg-purple-600 text-white rounded-full shadow-lg hover:bg-purple-700 transition-all opacity-0 invisible z-50">
+    <i class="fas fa-arrow-up text-xl"></i>
+  </button>
+
+  <!-- Header -->
+  <header class="navbar bg-white text-gray-800 sticky top-0 z-50 shadow-lg">
+    <div class="container mx-auto flex justify-between items-center px-8">
+      <div class="flex items-center py-2">
+        <a href="/">
+          <img src="./logo.svg" alt="We Buy Any House Logo" class="h-16 w-32 object-cover">
+        </a>
+      </div>
+      <!-- Desktop Nav -->
+      <nav class="hidden lg:flex space-x-10">
+        <a href="/" class="text-gray-900 transition-colors hover:text-purple-600">Home</a>
+        <a href="#services" class="text-gray-900 transition-colors hover:text-purple-600">Services</a>
+        <a href="#about" class="text-gray-900 transition-colors hover:text-purple-600">About Us</a>
+        <a href="#how-it-works" class="text-gray-900 transition-colors hover:text-purple-600">How It Works</a>
+        <a href="#testimonials" class="text-gray-900 transition-colors hover:text-purple-600">Testimonials</a>
+        <a href="#contact" class="text-gray-900 transition-colors hover:text-purple-600">Contact</a>
+      </nav>
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-button" class="lg:hidden text-gray-800 focus:outline-none">
+        <i class="fas fa-bars text-2xl"></i>
+      </button>
+    </div>
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="lg:hidden hidden bg-white text-gray-800">
+      <a href="/" class="block px-8 py-4 hover:bg-purple-50">Home</a>
+      <a href="#services" class="block px-8 py-4 hover:bg-purple-50">Services</a>
+      <a href="#about" class="block px-8 py-4 hover:bg-purple-50">About Us</a>
+      <a href="#how-it-works" class="block px-8 py-4 hover:bg-purple-50">How It Works</a>
+      <a href="#testimonials" class="block px-8 py-4 hover:bg-purple-50">Testimonials</a>
+      <a href="#contact" class="block px-8 py-4 hover:bg-purple-50">Contact</a>
+    </div>
+  </header>
+
+  <!-- Services Section -->
+  <section id="services" class="py-24 bg-white text-gray-800" style="scroll-margin-top: 80px;">
+    <div class="container mx-auto px-8">
+      <h2 class="text-4xl font-bold text-center mb-16">Our Services</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <!-- Card 1: Behind on Taxes -->
+        <div class="bg-gradient-to-br from-purple-600 to-indigo-600 p-10 rounded-lg shadow-lg text-center card-hover cursor-pointer text-white transform transition-all duration-300 hover:scale-105">
+          <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-file-invoice-dollar text-3xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-6">Behind on Taxes?</h3>
+          <p class="mb-6">Struggling with property taxes or facing foreclosure? We’ll help you sell fast for cash and take care of the paperwork, making the process smooth and stress-free.</p>
+          <a href="#contact" class="text-white font-semibold mt-4 inline-block hover:underline">Learn More →</a>
+        </div>
+
+        <!-- Card 2: Probate Properties -->
+        <div class="bg-gradient-to-br from-purple-600 to-indigo-600 p-10 rounded-lg shadow-lg text-center card-hover cursor-pointer text-white transform transition-all duration-300 hover:scale-105">
+          <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-home text-3xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-6">Probate Properties</h3>
+          <p class="mb-6">Inherited a home and unsure what to do next? We’ll guide you through the process and help you sell quickly for cash—no stress, no delays.</p>
+          <a href="#contact" class="text-white font-semibold mt-4 inline-block hover:underline">Learn More →</a>
+        </div>
+
+        <!-- Card 3: Distressed Properties -->
+        <div class="bg-gradient-to-br from-purple-600 to-indigo-600 p-10 rounded-lg shadow-lg text-center card-hover cursor-pointer text-white transform transition-all duration-300 hover:scale-105">
+          <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-tools text-3xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-6">Distressed Properties</h3>
+          <p class="mb-6">Sell your home as-is, no repairs or cleaning needed! Get a fair, hassle-free cash offer with no hidden fees.</p>
+          <a href="#contact" class="text-white font-semibold mt-4 inline-block hover:underline">Learn More →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us Section -->
+  <section class="bg-gray-800 py-16">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-white mb-4">Why Choose Us?</h2>
+        <p class="text-gray-300 max-w-2xl mx-auto">We make selling your home simple, fast, and stress-free. Here’s why homeowners trust us:</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Benefit 1: No Repairs Needed -->
+        <div class="bg-gray-700 p-8 rounded-lg shadow-lg hover:shadow-xl transition-all relative">
+          <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-gray-500 rounded-full flex items-center justify-center transition-all">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-4">No Repairs Needed</h3>
+          <p class="text-gray-300">Sell as-is, no costly fixes required.</p>
+        </div>
+
+        <!-- Benefit 2: No Agent Fees -->
+        <div class="bg-gray-700 p-8 rounded-lg shadow-lg hover:shadow-xl transition-all relative">
+          <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-gray-500 rounded-full flex items-center justify-center transition-all">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-4">No Agent Fees or Commissions</h3>
+          <p class="text-gray-300">More money in your pocket.</p>
+        </div>
+
+        <!-- Benefit 3: Fast & Hassle-Free -->
+        <div class="bg-gray-700 p-8 rounded-lg shadow-lg hover:shadow-xl transition-all relative">
+          <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-gray-500 rounded-full flex items-center justify-center transition-all">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-4">Fast &amp; Hassle-Free Process</h3>
+          <p class="text-gray-300">We make selling your home simple.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white pt-12 pb-6 leading-loose">
+    <div class="container mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <!-- About Section -->
+        <div>
+          <h3 class="text-xl font-bold mb-4">About Us</h3>
+          <p class="text-gray-300">Honest, transparent, and dedicated to putting you first—that’s the Lioness Homes promise. Let’s make your next move easy.</p>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+          <ul class="space-y-2">
+            <li><a href="/" class="text-gray-400 hover:text-white hover:underline">Home</a></li>
+            <li><a href="#services" class="text-gray-400 hover:text-white hover:underline">Services</a></li>
+            <li><a href="#about" class="text-gray-400 hover:text-white hover:underline">About Us</a></li>
+            <li><a href="#how-it-works" class="text-gray-400 hover:text-white hover:underline">How It Works</a></li>
+            <li><a href="#testimonials" class="text-gray-400 hover:text-white hover:underline">Testimonials</a></li>
+            <li><a href="#contact" class="text-gray-400 hover:text-white hover:underline">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Information -->
+        <div>
+          <h3 class="text-xl font-bold mb-4">Contact Us</h3>
+          <ul class="space-y-2">
+            <li class="flex items-center">
+              <i class="fas fa-envelope text-gray-400 mr-2"></i>
+              <a href="mailto:merhawitabdala@yahoo.com" class="text-gray-400 hover:text-white hover:underline">merhawitabdala@yahoo.com</a>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-phone-alt text-gray-400 mr-2"></i>
+              <a href="tel:9377183297" class="text-gray-400 hover:text-white hover:underline">(937) 818-3427</a>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-map-marker-alt text-gray-400 mr-2"></i>
+              <a href="geo:0,0?q=2227+Whitney+Pl,+Dayton,+OH+45420" class="text-gray-400 hover:text-white hover:underline">2227 Whitney Pl, Dayton, OH 45420</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Social Media -->
+        <div>
+          <h3 class="text-xl font-bold mb-4">Follow Us</h3>
+          <div class="flex space-x-4">
+            <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full hover:bg-gray-600 transition-all">
+              <i class="fab fa-facebook-f text-white"></i>
+            </a>
+            <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full hover:bg-gray-600 transition-all">
+              <i class="fab fa-twitter text-white"></i>
+            </a>
+            <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full hover:bg-gray-600 transition-all">
+              <i class="fab fa-instagram text-white"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="border-t border-gray-700 my-8"></div>
+
+      <!-- Footer Bottom -->
+      <div class="text-center text-gray-400">
+        <p>© 2025 Lioness Homes. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./js/script.js"></script>
+</body>
+</html>
