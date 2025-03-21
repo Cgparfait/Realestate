@@ -1,0 +1,31 @@
+<header class="navbar border-b-4 border-amber-400 sticky top-0 bg-white z-50 shadow-lg">
+    <div class="container mx-auto flex justify-between items-center px-8">
+      <div class="flex items-center py-2">
+        <a href="/">
+          <img src="./logo.svg" alt="We Buy Any House Logo" class="h-16 w-32 object-cover">
+        </a>
+      </div>
+      <!-- Desktop Nav -->
+      <nav class="hidden lg:flex space-x-10">
+        <a href="#home" class="transition-colors hover:text-purple-600" onclick="mobileMenu.classList.toggle('hidden')">Home</a>
+        <a href="#services" class="transition-colors hover:text-purple-600" onclick="mobileMenu.classList.toggle('hidden')">Services</a>
+        <a href="#sell-stress-free" class="transition-colors hover:text-purple-600">About Us</a>
+        <a href="#how-it-works" class="transition-colors hover:text-purple-600">How It Works</a>
+        <a href="#testimonials" class="transition-colors hover:text-purple-600">Testimonials</a>
+        <a href="#contact" class="transition-colors hover:text-purple-600">Contact</a>
+      </nav>
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-button" class="lg:hidden text-gray-800 focus:outline-none">
+        <i class="fas fa-bars text-2xl"></i>
+      </button>
+    </div>
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="lg:hidden hidden bg-white text-gray-800">
+      <a href="#home" class="block px-8 py-4 hover:bg-purple-50" onclick="hideNavbar()">Home</a>
+      <a href="#services" class="block px-8 py-4 hover:bg-purple-50" onclick="hideNavbar()">Services</a>
+      <a href="#sell-stress-free" class="block px-8 py-4 hover:bg-purple-50" onclick="hideNavbar()">About Us</a>
+      <a href="#how-it-works" class="block px-8 py-4 hover:bg-purple-50" onclick="hideNavbar()">How It Works</a>
+      <a href="#testimonials" class="block px-8 py-4 hover:bg-purple-50" onclick="hideNavbar()">Testimonials</a>
+      <a href="#contact" class="block px-8 py-4 hover:bg-purple-50" onclick="hideNavbar()">Contact</a>
+    </div>
+  </header>

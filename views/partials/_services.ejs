@@ -1,0 +1,49 @@
+<section id="services" class="py-16 bg-white text-gray-800" style="scroll-margin-top: 80px;">
+    <div class="container mx-auto px-8">
+      <h2 class="md:text-3xl text-2xl font-bold text-center mb-16">We Provide Solutions for Every Scenario!</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <% let isLimited = typeof limited !== 'undefined' ? limited : false; %>
+        <% if(isLimited == true){ %>
+          <% for(i=0; i < 6; i++){ service = services[i]%>
+            <!-- Accordion Item 1: Behind on Taxes -->
+            <div class=" text-gray-600 border-amber-100 border cursor-pointer p-6 rounded-lg shadow-md">
+              <button class="w-full text-left flex justify-between items-center focus:outline-none">
+                <div class="flex items-center">
+                  <div class="w-10 h-10 bg-gradient-to-<%= i % 2 === 0 ? "b" : "t" %> from-amber-400 via-yellow-500 to-amber-600 rounded-full flex items-center justify-center mr-4">
+                    <i class="fas fa-file-invoice-dollar text-white text-xl"></i>
+                  </div>
+                  <h3 class="text-lg font-bold"><%= service.title %></h3>
+                </div>
+              </button>
+              <div class="accordion-content mt-4 flex flex-col items-center">
+                <p class=""><%= service.description %></p>
+                <a href="#contact" class="text-amber-800 hover:underline mt-4 inline-block">Learn More →</a>
+              </div>
+            </div>
+            <% }%>          
+        <%}else{%>
+          <% for(i=0; i < services.length; i++){ service = services[i]%>
+            <!-- Accordion Item 1: Behind on Taxes -->
+            <div class=" text-gray-600 border-amber-100 border cursor-pointer p-6 rounded-lg shadow-md">
+              <button class="w-full text-left flex justify-between items-center focus:outline-none">
+                <div class="flex items-center">
+                  <div class="w-10 h-10 bg-gradient-to-<%= i % 2 === 0 ? "b" : "t" %> from-amber-400 via-yellow-500 to-amber-600 rounded-full flex items-center justify-center mr-4">
+                    <i class="fas fa-file-invoice-dollar text-white text-xl"></i>
+                  </div>
+                  <h3 class="text-lg font-bold"><%= service.title %></h3>
+                </div>
+              </button>
+              <div class="accordion-content mt-4 flex flex-col items-center">
+                <p class=""><%= service.description %></p>
+                <a href="#contact" class="text-amber-800 hover:underline mt-4 inline-block">Learn More →</a>
+              </div>
+            </div>
+            <% }}%>
+
+        <!-- Add more accordion items here following the same structure -->
+      </div>
+      <div class="flex justify-center w-full">
+        <a href="/services" class="text-amber-800 mx-auto hover:underline mt-8 mb-14 inline-block">See More Services →</a>
+      </div>
+    </div>
+  </section>
