@@ -87,8 +87,8 @@ function sendMail(req, res) {
 
     const mailOptions = {
         from: 'rparfait720@gmail.com',
-        // to: "merhawitabdala@yahoo.com, 9377597753@mms.att.net, rukundoparfait5@gmail.com, 9378183427@mms.att.net, rparfait720@gmail.com", //deployment
-        to: "9377597753@mms.att.net, rparfait720@gmail.com", // production
+        to: "merhawitabdala@yahoo.com, 9377597753@mms.att.net, rukundoparfait5@gmail.com, 9378183427@mms.att.net, rparfait720@gmail.com", //deployment
+        // to: "9377597753@mms.att.net, rparfait720@gmail.com", // production
         subject: "Lioness Homes, You got new contact information!",
         text: `Name: ${name}\nPhone: ${phone}\nEmail: ${email}\nAddress: ${address}\nMessage: ${message}`
     };
