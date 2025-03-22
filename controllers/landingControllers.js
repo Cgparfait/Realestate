@@ -56,7 +56,12 @@ const services = [
     }
 ];
 async function renderHomePage(req, res) {
-    contact_info = await contactQueries.get_contact_information()
+    // contact_info = await contactQueries.get_contact_information()
+    contact_info = {
+        phone: 'asdfasd',
+        email: 'asdfasd',
+        address: "sdfasdfas",
+    }
     res.render('./pages/home', { services, contact_info })
 }
 
