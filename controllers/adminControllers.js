@@ -21,17 +21,17 @@ const login = (req, res) => {
 
 
 async function getOrganicSearchMetrics() {
-    // Replace with your service account key file path
-    const KEY_FILE_PATH = path.join(process.env.SECRET_FOLDER_NAME + "/" + process.env.ANALYTICS_API_KEY_FILE_NAME)
 
     // Replace with your GA4 property ID
     const PROPERTY_ID = process.env.ANALYTICS_PROPERTY_ID;
-
-    generate_analytics_api_key_file()
-    const authClient = new JWT({
-        keyFile: KEY_FILE_PATH,
-        scopes: 'https://www.googleapis.com/auth/analytics.readonly'
-    });
+    client_email = process.env.ANALYTICS_CLIENT_EMAIL
+    private_key = process.env.ANALYTICS_PRIVATE_KEY
+    const authClient = new JWT(
+        client_email,
+        null,
+        private_key,
+        ['https://www.googleapis.com/auth/analytics.readonly']
+    );
 
     await authClient.authorize();
 
