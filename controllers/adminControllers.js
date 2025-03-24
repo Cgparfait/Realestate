@@ -27,7 +27,7 @@ async function getOrganicSearchMetrics() {
     const client_email = process.env.ANALYTICS_CLIENT_EMAIL
     const private_key = process.env.ANALYTICS_PRIVATE_KEY
 
-    
+    console.log({PrivateKey: private_key, client_email: client_email})
     const authClient = new JWT(
         client_email,
         null,
