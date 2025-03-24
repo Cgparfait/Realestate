@@ -1,90 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Panel</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@preline/ui@1.0.0/dist/preline.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100">
-  <div class="flex min-h-screen">
-    <!-- Sidebar -->
-    <div class="bg-gray-800 overflow-auto text-white w-64 space-y-6 py-7 px-2 fixed inset-y-0 left-0 transform -translate-x-full md:translate-x-0 transition duration-200 ease-in-out">
-      <div class="text-white sticky -top-7 bg-gray-800 flex items-center -mt-7 -mx-2 p-6">
-        <span class="text-2xl font-extrabold">Admin</span>
-      </div>
-      <nav>
-        <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">
-          Dashboard
-        </a>
-        <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">
-          Contact info
-        </a>
-        <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">
-          Services
-        </a>
-        <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">
-          Settings
-        </a>
-      </nav>
-    </div>
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-white shadow-md">
+            <div class="p-4">
+                <h2 class="text-lg font-semibold">Dashboard</h2>
+                <nav class="mt-4">
+                    <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-500 hover:text-white">
+                        Home
+                    </a>
+                    <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-500 hover:text-white">
+                        Analytics
+                    </a>
+                    <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-500 hover:text-white">
+                        Settings
+                    </a>
+                </nav>
+            </div>
+        </aside>
 
-    <!-- Main Content -->
-    <div class="flex-1 md:ml-64">
-      <!-- Navbar -->
-      <div class="bg-white shadow-md p-4">
-        <div class="flex justify-between items-center">
-          <div class="text-xl font-bold">Settings</div>
-          <button class="md:hidden text-gray-500 focus:outline-none" onclick="toggleSidebar()">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-            </svg>
-          </button>
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- Header -->
+            <header class="bg-white shadow-md p-4">
+                <div class="flex justify-between items-center">
+                    <h1 class="text-xl font-semibold">Welcome Back, User!</h1>
+                    <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
+                        Notifications
+                    </button>
+                </div>
+            </header>
+
+            <!-- Content Area -->
+            <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200 p-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Card 1 -->
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-lg font-semibold">Card 1</h3>
+                        <p class="text-gray-600">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-lg font-semibold">Card 2</h3>
+                        <p class="text-gray-600">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-lg font-semibold">Card 3</h3>
+                        <p class="text-gray-600">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+            </main>
         </div>
-      </div>
-
-      <!-- Main Content Area -->
-      <div class="p-6">
-        <h2 class="text-2xl font-bold mb-4">Change password</h2>
-        <form class="bg-white p-6 rounded-lg shadow-md">
-          <div class="mb-4">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="item-name">
-              Username
-            </label>
-            <input class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" id="item-name" type="text" placeholder="Enter item name">
-          </div>
-          <div class="mb-4">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="item-name">
-              Current Password
-            </label>
-            <input class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" id="item-name" type="text" placeholder="Enter item name">
-          </div>
-          <div class="mb-4">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="item-name">
-              New Password
-            </label>
-            <input class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" id="item-name" type="text" placeholder="Enter item name">
-          </div>
-          <div class="mb-4">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="item-description">
-              Confirm New Password
-            </label>
-            <textarea class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" id="item-description" placeholder="Enter description"></textarea>
-          </div>
-          <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-200">
-            Update Password
-          </button>
-        </form>
-      </div>
     </div>
-  </div>
 
-  <!-- JavaScript to toggle sidebar on mobile -->
-  <script>
-    function toggleSidebar() {
-      const sidebar = document.querySelector('div[class*="transform -translate-x-full"]');
-      sidebar.classList.toggle('translate-x-0');
-    }
-  </script>
+    <script src="https://cdn.jsdelivr.net/npm/@preline/ui@1.0.0/dist/preline.min.js"></script>
 </body>
 </html>

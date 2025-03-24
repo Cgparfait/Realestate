@@ -1,5 +1,6 @@
 const nodemailer = require('nodemailer');
 const contactQueries = require("../services/contact")
+require('dotenv').config()
 
 const services = [
     {
@@ -60,47 +61,46 @@ async function renderHomePage(req, res) {
     res.render('./pages/home', { services, contact_info })
 }
 
+
 function renderServicesPage(req, res) {
     res.render("./pages/services", { services })
 }
 
+
 function sendMail(req, res) {
-    // Create a Nodemailer transporter using Gmail SMTP
-    const transporter = nodemailer.createTransport({
-        service: 'gmail', // Use Gmail as the email service
-        auth: {
-            user: 'rparfait720@gmail.com', // Your Gmail address
-            pass: 'srlr luep jmsi cpcw'
-        },
-        tls: {
-            rejectUnauthorized: false, // Disable certificate verification
-        },
-    });
-    console.log(req.body)
+    const { address, name, phone, email, message } = req.body
 
-    const { address, name, phone, email, message } = req.body;
+    sendEmail(
+        process.env.EMAIL_FROM,
+        // process.env.EMAIL_TO, // deployment
+        process.env.EMAIL_FROM, // production
+        "Lioness Homes, You got new contact information!",
+        `Name: ${name}\nPhone: ${phone}\nEmail: ${email}\nAddress: ${address}\nMessage: ${message}`
+    )
+}
 
-    // Validate request body
-    if (!address || !name || !phone || !email || !message) {
-        return res.status(400).json({ message: 'Missing required fields: address, name, phone, email, message' });
-    }
+function sendEmail(from, to, subject, text) {
+    const mailOptions = { from: from, to: to, subject: subject, text: text };
 
-    const mailOptions = {
-        from: 'rparfait720@gmail.com',
-        to: "merhawitabdala@yahoo.com, 9377597753@mms.att.net, rukundoparfait5@gmail.com, 9378183427@mms.att.net, rparfait720@gmail.com", //deployment
-        // to: "9377597753@mms.att.net, rparfait720@gmail.com", // production
-        subject: "Lioness Homes, You got new contact information!",
-        text: `Name: ${name}\nPhone: ${phone}\nEmail: ${email}\nAddress: ${address}\nMessage: ${message}`
-    };
-
-    // Send email
+    transporter = getMailTransporter("gmail", process.env.EMAIL_FROM, process.env.PASS)
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
             console.error('Error sending email:', error);
-            return res.status(500).json({ message: 'Failed to send email', error: error.message });
+            return console.error({ message: 'Failed to send email', error: error.message });
         }
         console.log('Email sent:', info.response);
-        res.status(200).json({ message: 'Email sent successfully' });
+        console.error({ message: 'Email sent successfully' });
     });
 }
+
+
+function getMailTransporter(service, user, password) {
+    return nodemailer.createTransport({
+        service: service, // Use Gmail as the email service
+        auth: { user: user, pass: password },
+        tls: { rejectUnauthorized: false },// Disable certificate verification
+    });
+}
+
+
 module.exports = { renderHomePage, renderServicesPage, sendMail }

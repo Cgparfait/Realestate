@@ -35080,28 +35080,18 @@ h3 {
   background-position: center;
 }
 
-.custom-shape-divider-top-1741610239 {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  line-height: 0;
-}
-
 #back-to-top {
   transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
 }
 
 #back-to-top.visible {
-  opacity: 1;
+  --tw-bg-opacity: 0.05;
   visibility: visible;
   transform: translateY(0);
 }
 
 #back-to-top.hidden {
   opacity: 0;
-  visibility: hidden;
   transform: translateY(20px);
 }
 
