@@ -5,7 +5,7 @@
   "scripts": {
     "server": "nodemon index.js",
     "test": "jest",
-    "postbuild": "node generate_analytics_api_file.js",
+    "postinstall": "node generate_analytics_api_file.js",
     "watch:css": "npx tailwindcss-cli@latest -i ./src/input.css -o ./public/css/tailwind.css --watch"
   },
   "author": "",
