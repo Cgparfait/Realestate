@@ -24,8 +24,10 @@ async function getOrganicSearchMetrics() {
 
     // Replace with your GA4 property ID
     const PROPERTY_ID = process.env.ANALYTICS_PROPERTY_ID;
-    client_email = process.env.ANALYTICS_CLIENT_EMAIL
-    private_key = process.env.ANALYTICS_PRIVATE_KEY
+    const client_email = process.env.ANALYTICS_CLIENT_EMAIL
+    const private_key = process.env.ANALYTICS_PRIVATE_KEY
+
+    
     const authClient = new JWT(
         client_email,
         null,
