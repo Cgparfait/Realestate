@@ -3,7 +3,6 @@ const express = require('express');
 const path = require('path');
 const landingRoutes = require("./routes/landingRoutes")
 const adminRoutes = require("./routes/adminRoutes")
-
 const app = express();
 
 

@@ -3,6 +3,7 @@ const { JWT } = require('google-auth-library');
 const analyticsData = google.analyticsdata('v1beta');
 const path = require("path")
 const fs = require("fs")
+const { encode, decode } = require("hi-base32");
 
 
 const getDashboard = (req, res) => {
@@ -25,9 +26,8 @@ async function getOrganicSearchMetrics() {
     // Replace with your GA4 property ID
     const PROPERTY_ID = process.env.ANALYTICS_PROPERTY_ID;
     const client_email = process.env.ANALYTICS_CLIENT_EMAIL
-    const private_key = process.env.ANALYTICS_PRIVATE_KEY
-
-    console.log({PrivateKey: private_key, client_email: client_email})
+    const private_key = decode(process.env.ANALYTICS_PRIVATE_KEY)
+    
     const authClient = new JWT(
         client_email,
         null,
