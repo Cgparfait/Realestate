@@ -21,11 +21,11 @@ const services = [
     },
     {
         title: "Inherited Properties",
-        description: "Unexpectedly received a home but don’t want the responsibility? We make selling easy, offering fair cash deals with a smooth transition."
+        description: "You unexpectedly received a home but don’t want the responsibility? We make selling easy, offering fair cash deals with a smooth transition."
     },
     {
         title: "Pre-Foreclosure Sales",
-        description: "You want to act before foreclosure damages your credit? We buy homes quickly, helping you avoid legal trouble and financial stress."
+        description: "Did You want to act before foreclosure damages your credit? We buy homes quickly, helping you avoid legal trouble and financial stress."
     },
     {
         title: "Vacant or Abandoned Homes",
@@ -33,27 +33,27 @@ const services = [
     },
     {
         title: "Code Violations",
-        description: "Dealing with city fines or unpermitted work? We buy homes with code violations, so you don’t have to worry about fixing costly issues."
+        description: "Are you dealing with city fines or unpermitted work? We buy homes with code violations, so you don’t have to worry about fixing costly issues."
     },
     {
         title: "Divorce Sales",
-        description: "Going through a divorce and need to sell your home fast? We provide a smooth and fair selling process to help you move on quickly."
+        description: "Are you going through a divorce and need to sell your home fast? We provide a smooth and fair selling process to help you move on quickly."
     },
     {
         title: "Job Relocation or Downsizing",
-        description: "Moving for work or looking to downsize? We help homeowners sell quickly without the stress of long market times."
+        description: "Are you moving for work or looking to downsize? We help you sell quickly without the stress of long market times."
     },
     {
         title: "Fire or Water-Damaged Homes",
-        description: "If your home has suffered fire or water damage, selling can be tough. We buy properties as-is, offering a hassle-free solution."
+        description: "If your home has suffered fire or water damage, selling can be tough. We buy your property as-is, offering a hassle-free solution."
     },
     {
         title: "Multi-Family & Rental Properties",
-        description: "Tired of managing tenants or rental properties? We purchase multi-family units, whether they’re occupied or vacant, for a quick and easy sale."
+        description: "Are you tired of managing tenants or rental properties? We purchase multi-family units, whether they’re occupied or vacant, for a quick and easy sale."
     },
     {
         title: "Cash Offers for Homes",
-        description: "Need to sell fast? We provide fair, all-cash offers with no realtor fees, no hidden costs, and a fast closing process."
+        description: "You need to sell fast? We provide fair, all-cash offers with no realtor fees, no hidden costs, and a fast closing process."
     }
 ];
 async function renderHomePage(req, res) {
