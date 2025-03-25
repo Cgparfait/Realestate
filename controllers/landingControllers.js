@@ -5,11 +5,11 @@ require('dotenv').config()
 const services = [
     {
         title: "Behind on Taxes",
-        description: "Struggling with property tax debt? We help homeowners avoid tax liens or foreclosure by providing quick solutions, including cash offers for your home."
+        description: "Are you struggling with property tax debt? We help you avoid tax liens or foreclosure by providing quick solutions, including cash offers for your home."
     },
     {
         title: "Probate Properties",
-        description: "Inherited a property and not sure what to do next? We specialize in purchasing probate homes quickly and hassle-free, helping you move forward with ease."
+        description: "You inherited a property and not sure what to do next? We specialize in purchasing probate homes quickly and hassle-free, helping you move forward with ease."
     },
     {
         title: "Distressed Properties",
@@ -17,7 +17,7 @@ const services = [
     },
     {
         title: "Foreclosure Assistance",
-        description: "Facing foreclosure? We can help stop the process by purchasing your home fast, giving you the financial relief you need."
+        description: "Are you facing foreclosure? We can help you stop the process by purchasing your home fast, giving you the financial relief you need."
     },
     {
         title: "Inherited Properties",
@@ -25,7 +25,7 @@ const services = [
     },
     {
         title: "Pre-Foreclosure Sales",
-        description: "Act before foreclosure damages your credit. We buy homes quickly, helping you avoid legal trouble and financial stress."
+        description: "You want to act before foreclosure damages your credit? We buy homes quickly, helping you avoid legal trouble and financial stress."
     },
     {
         title: "Vacant or Abandoned Homes",
