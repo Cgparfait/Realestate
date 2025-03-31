@@ -5,7 +5,9 @@ const path = require("path")
 const fs = require("fs")
 const { encode, decode } = require("hi-base32");
 const servicesQueries = require("../services/services");
-const { error } = require('console');
+const User = require("../models/user")
+const jwt = require("jsonwebtoken")
+
 
 
 const getDashboard = async (req, res) => {
@@ -50,8 +52,25 @@ const updateService = async (req, res) => {
 }
 
 
-const login = (req, res) => {
+const login = async (req, res) => {
+    const { username, password } = req.body
 
+    err = {}
+    if (!username) err.username = "Username is required"
+    if (!password) err.password = "Password is required"
+    if (err.username || err.password) return res.status(404).json({ error: err })
+
+    try {
+        const user = await User.findOne({ username: username, password: password })
+        if (!user) return res.status(404).json({ error: "User does not exit" })
+
+        const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, { expiresIn: '1h' })
+        req.session.token = token
+        res.redirect("/admin/")
+    }
+    catch (error) {
+        console.log(error)
+    }
 }
 
 

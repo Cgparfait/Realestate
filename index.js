@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const landingRoutes = require("./routes/landingRoutes")
 const adminRoutes = require("./routes/adminRoutes")
+const session = require("express-session")
 const app = express();
 
 
@@ -10,6 +11,14 @@ const app = express();
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, "public")));
 app.set("views", path.join(__dirname, "views"));
+
+// sessions
+app.use(session({
+    secret: process.env.SECRET_KEY,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {secure: false, httpOnly: true, maxAge:60000}
+}))
 
 
 // body parser middleware

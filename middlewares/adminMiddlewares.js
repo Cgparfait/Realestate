@@ -37,5 +37,4 @@ function validateIdParam(id) {
 }
 
 
-
 module.exports = { checkLoginCredentials, validateDeleteAction, validateServiceUpdateAction }
