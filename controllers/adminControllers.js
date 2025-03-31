@@ -4,15 +4,49 @@ const analyticsData = google.analyticsdata('v1beta');
 const path = require("path")
 const fs = require("fs")
 const { encode, decode } = require("hi-base32");
+const servicesQueries = require("../services/services");
+const { error } = require('console');
 
 
-const getDashboard = (req, res) => {
-    getOrganicSearchMetrics().then((metrics) => {
-        res.render("./pages/admin/dashboard", { metrics })
-    }).catch(err => {
-        console.error("Couldn't fetch search metrics" + err)
-        res.render("./pages/admin/dashboard", { metrics: false })
-    })
+const getDashboard = async (req, res) => {
+    try {
+        const services = await servicesQueries.getAllServices()
+        const search_metrics = await getOrganicSearchMetrics()
+        res.render("./pages/admin/dashboard", { search_metrics, services })
+    }
+    catch (err) {
+        console.error("Failed to fetch search metrics or services data" + err)
+        res.send("failed to load requirements for the page, please contact the developer to fix issue")
+    }
+}
+
+const deleteOneService = async (req, res) => {
+    const serviceId = req.params.id
+    try {
+        const deletedService = await servicesQueries.deleteService(serviceId)
+        if (!deletedService) {
+            console.error({ message: "failed to delete service with id: " + serviceId })
+            return res.status(404).json({ actionCompleted: false })
+        }
+        return res.status(200).json({ actionCompleted: true })
+    }
+    catch (err) {
+        console.error({ message: "failed to delete service with id: " + serviceId, error: error })
+        return res.status(404).json({ actionCompleted: false })
+
+    }
+}
+
+const updateService = async (req, res) => {
+    try {
+        const serviceUpdated = await servicesQueries.updateService(req.body.serviceData.id, req.body.serviceData)
+        if (serviceUpdated) res.status(200).json({ actionCompleted: true, message: "service with id= " + req.body.serviceData.id + " has been updated" })
+        else return res.status(200).json({ actionCompleted: true })
+    }
+    catch (err) {
+        console.error("unable to update service " + req.body.serviceData.id, err)
+        return res.status(404).json({ actionCompleted: false })
+    }
 }
 
 
@@ -27,7 +61,7 @@ async function getOrganicSearchMetrics() {
     const PROPERTY_ID = process.env.ANALYTICS_PROPERTY_ID;
     const client_email = process.env.ANALYTICS_CLIENT_EMAIL
     const private_key = decode(process.env.ANALYTICS_PRIVATE_KEY)
-    
+
     const authClient = new JWT(
         client_email,
         null,
@@ -90,17 +124,5 @@ function generate_analytics_api_key_file() {
     })
 }
 
-function resetDir(dirName) {
-    removeDir(dirName)
-    createDir(dirName)
-}
-function removeDir(dirName) {
-    fs.rmSync(dirName, { recursive: true, force: true })
-}
-function createDir(dirName) {
-    fs.mkdirSync(dirName, { recursive: true });
-    console.log(`Folder created: ${dirName}`);
-}
 
-
-module.exports = { getDashboard, login }
+module.exports = { getDashboard, login, deleteOneService, updateService }

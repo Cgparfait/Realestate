@@ -3,22 +3,48 @@ const Service = require('../models/services');
 
 
 const createService = (title, description) => {
-    const newService = new Service({title: title, description: description})
+    const newService = new Service({ title: title, description: description })
     newService.save()
-    .then((service) => {console.log(service.title + " has been saved successfully")})
-    .catch((err)=> {console.error(err)})
+        .then((service) => { console.log(service.title + " has been saved successfully") })
+        .catch((err) => { console.error(err) })
 }
 
-const updateService = (id, updatedData) => {
-    Service.findByIdAndUpdate(id, {$set: updatedData})
-    .then(()=>console.log("service updated successfully"))
-    .catch((err)=>console.error("failed to update service: " + err))
+const updateService = async (id, updatedData) => {
+    try {
+        const updatedService = await Service.findByIdAndUpdate(id, { $set: updatedData })
+
+        if (!updatedService) {
+            console.log("failed to update service: " + id + " with: ", updatedData)
+            return false
+        }
+        else { return true }
+    }
+    catch (err) {
+        console.error({ message: "unexpected error ocured while updating service: " + id + " with: " + updatedData, error: err })
+    }
 }
 
-const deleteService = (id) => {
-    Service.findByIdAndDelete(id)
-    .then(()=>{console.log("service deleted successfully")})
-    .catch((err) => console.log("unable to delete service: " + err))
+const deleteService = async (id) => {
+    try {
+        const deletedService = await Service.findByIdAndDelete(id)
+        if (!deletedService) return false
+        console.log("service deleted successfully")
+        return true
+    }
+    catch (err) {
+        console.log("unable to delete service: " + err)
+        return false
+    }
 }
 
-module.exports = {createService, updateService, deleteService}
+const getAllServices = async () => {
+    try {
+        const services = await Service.find()
+        return services
+    }
+    catch (err) {
+        console.error({ message: "couldn't find the services", error: err })
+    }
+}
+
+module.exports = { createService, updateService, deleteService, getAllServices }

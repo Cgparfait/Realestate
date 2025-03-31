@@ -43,24 +43,24 @@
       </nav>
     </div>
 
-    
+
     <!-- Main Content -->
     <div class="flex-1 md:ml-64">
-        <!-- Navbar -->
-        <div class="bg-white shadow-md p-4">
+      <!-- Navbar -->
+      <div class="bg-white shadow-md p-4">
         <div class="flex justify-between items-center">
           <div class="text-xl font-bold">Dashboard</div>
           <button class="md:hidden text-gray-500 focus:outline-none" onclick="toggleSidebar()">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
             </svg>
-        </button>
-    </div>
+          </button>
+        </div>
       </div>
-      
+
       <!-- Main Content Area -->
       <div class="p-6">
-          <%- include('../../partials/admin/_model-form') %>
+        <%- include('../../partials/admin/_model-form') %>
 
         <h1 class="text-2xl font-bold mb-4">Monthly Insights</h1>
         <!-- Cards -->
@@ -69,19 +69,19 @@
             <div class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
               Total Clicks
             </div>
-            <div class="order-1 text-3xl font-extrabold text-gray-700"><%= metrics.organic_google_search_clicks  %></div>
+            <div class="order-1 text-3xl font-extrabold text-gray-700"><%= search_metrics.organic_google_search_clicks  %></div>
           </div>
           <div class="flex flex-col border-t border-b border-gray-100 p-6 text-center sm:border-0 sm:border-l sm:border-r">
             <div class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
               Click Through Rate
             </div>
-            <div class="order-1 text-3xl font-extrabold text-gray-700"><%= metrics.organic_google_search_click_through_rate.toFixed(1) %>%</div>
+            <div class="order-1 text-3xl font-extrabold text-gray-700"><%= search_metrics.organic_google_search_click_through_rate.toFixed(1) %>%</div>
           </div>
           <div class="flex flex-col border-t border-gray-100 p-6 text-center sm:border-0 sm:border-l">
             <div class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
               Total Impressions
             </div>
-            <div class="order-1 text-3xl font-extrabold text-gray-700"><%= metrics.organic_google_search_impressions  %></div>
+            <div class="order-1 text-3xl font-extrabold text-gray-700"><%= search_metrics.organic_google_search_impressions  %></div>
           </div>
         </div>
         <div class="py-4">
@@ -110,6 +110,10 @@
             </button>
           </form>
         </div>
+        <div class="py-4">
+          <h2 class="text-2xl font-bold mb-4 mt-8">Edit Contact Info</h2>
+          <%- include('../../partials/admin/_table') %>
+        </div>
       </div>
     </div>
 
@@ -125,6 +129,7 @@
         clickedElement.nextElementSibling.classList.toggle('hidden')
       }
     </script>
+    <script src="./js/requests/services-actions.js"></script>
 </body>
 
 </html>
