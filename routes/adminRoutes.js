@@ -13,6 +13,7 @@ router.get('/', authMiddleware, adminControllers.getDashboard)
 router.get('/login', (req, res) => { res.render("./pages/admin/login") })
 router.post('/login', adminControllers.login)
 
+router.use(authMiddleware)
 router.delete("/service/delete/:id", adminMiddlewares.validateDeleteAction, adminControllers.deleteOneService)
 router.patch("/service/update/:id", adminMiddlewares.validateServiceUpdateAction, adminControllers.updateService)
 
