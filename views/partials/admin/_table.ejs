@@ -14,18 +14,20 @@
     </thead>
     <tbody>
       <% services.forEach(service =>{%>
-      <tr class="odd:bg-white cursor-pointer odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 border-gray-200">
-        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-          <%= service.title %>
-        </th>
-        <td class="px-6 py-4">
-          <%= service.description %>
-        </td>
-        <td class="px-6 py-4 flex gap-2">
-          <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-          <button onclick="deleteService('<%= service._id%>')" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</button>
-        </td>
-      </tr>
+      <form action="" onsubmit="editService(event, '<%= service._id %>')">
+        <tr class="odd:bg-white cursor-pointer odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 border-gray-200">
+          <th scope="row" id="<%= service.id %>-title" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" onclick="event.target.setAttribute('contenteditable','true')" oninput="document.getElementById('<%= service._id%>-update').classList.remove('hidden')">
+            <%= service.title %>
+          </th>
+          <td class="px-6 py-4" id="<%= service.id %>-description" onclick="event.target.setAttribute('contenteditable','true')" oninput="document.getElementById('<%= service._id%>-update').classList.remove('hidden')">
+            <%= service.description %>
+          </td>
+          <td class="px-6 py-4 flex gap-2">
+            <button href="#" id="<%= service._id%>-update" class="font- bg-blue-600 rounded text-white block text-sm p-2 hidden">Update</button>
+            <span onclick="deleteService('<%= service._id%>')" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</span>
+          </td>
+        </tr>
+      </form>
       <%})%>
     </tbody>
   </table>

@@ -68,7 +68,7 @@ async function renderHomePage(req, res) {
         const services = await servicesQueries.getAllServices()
         const contact_info = await contactQueries.get_contact_information()
 
-        res.render("./pages/services", { services, contact_info })
+        res.render("./pages/home", { services, contact_info })
     }
     catch {
         res.send("Failed to Load requirements for " + req.path)

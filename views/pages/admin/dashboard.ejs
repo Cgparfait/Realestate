@@ -60,7 +60,8 @@
 
       <!-- Main Content Area -->
       <div class="p-6">
-        <%- include('../../partials/admin/_model-form') %>
+        <%- include('../../partials/admin/_create-service-modal') %>
+        <%#- include('../../partials/admin/_edit-service-modal') %>
 
         <h1 class="text-2xl font-bold mb-4">Monthly Insights</h1>
         <!-- Cards -->
@@ -84,7 +85,7 @@
             <div class="order-1 text-3xl font-extrabold text-gray-700"><%= search_metrics.organic_google_search_impressions  %></div>
           </div>
         </div>
-        <div class="py-4">
+        <!-- <div class="py-4">
           <h2 class="text-2xl font-bold mb-4 mt-8">Edit Contact Info</h2>
           <form class="bg-white p-6 rounded-lg shadow-md">
             <div class="mb-4">
@@ -109,9 +110,9 @@
               Update
             </button>
           </form>
-        </div>
+        </div> -->
         <div class="py-4">
-          <h2 class="text-2xl font-bold mb-4 mt-8">Edit Contact Info</h2>
+          <!-- <h2 class="text-2xl font-bold mb-4 mt-8">Edit Contact Info</h2> -->
           <%- include('../../partials/admin/_table') %>
         </div>
       </div>
@@ -129,7 +130,88 @@
         clickedElement.nextElementSibling.classList.toggle('hidden')
       }
     </script>
-    <script src="./js/requests/services-actions.js"></script>
+    <!-- <script src="/js/requests/services-actions.js"></script> -->
+    <script>
+      const createService = async (event) => {
+        event.preventDefault()
+
+        const formData = new FormData(event.target)
+        formDataObject = Object.fromEntries(formData.entries())
+
+        try {
+          const response = await fetch("/admin/service/create", {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json", // Important for JSON data
+            },
+            body: JSON.stringify(formDataObject)
+          })
+
+          if (response.ok) {
+            const jsonResponse = await response.json()
+            alert("Service has been created successfully")
+            window.location.href = "/admin/"
+            console.log(jsonResponse)
+          }
+        } catch (error) {
+          alert("Failed to create service doe to an error in the system")
+          console.log(error)
+        }
+      }
+
+      const editService = async (event, id) => {
+        event.preventDefault()
+
+        alert(id)
+        title = document.getElementById(id + "-title").innerText
+        description = document.getElementById(id + "-description").innerText
+
+        console.log(title, description)
+
+        try {
+          const response = await fetch("/admin/service/edit/" + id, {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json", // Important for JSON data
+            },
+            body: JSON.stringify({
+              title: title,
+              description: description
+            })
+          })
+
+          if (response.ok) {
+            const jsonResponse = await response.json()
+            alert("Service has been updated successfully")
+            window.location.href = "/admin/"
+            console.log(jsonResponse)
+          }
+        } catch (error) {
+          alert("Failed to update service doe to an error in the system")
+          console.log(error)
+        }
+      }
+
+      const deleteService = async (serviceId) => {
+        if (confirm("are you sure you want to delete service" + serviceId)) {
+          url = "/admin/service/delete/" + serviceId
+          try {
+            const response = await fetch(url, {
+              method: "delete"
+            })
+            if (!response.ok) {
+              alert("failed to delete service with id: " + serviceId)
+            } else {
+              const json_response = await response.json()
+              alert(serviceId + " has been deleted successfully!")
+              window.location.href = "/admin/"
+            }
+          } catch (error) {
+            console.log("could not delete service fetch data for " + serviceId, error)
+          }
+        }
+      }
+    </script>
 </body>
 
 </html>

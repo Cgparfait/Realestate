@@ -1,5 +1,11 @@
+// const createService = async (event) =>{
+//     event.preventDefault()
+// }
 
-async function deleteService(serviceId) {
+
+
+
+const deleteService = async (serviceId) => {
     if (confirm("are you sure you want to delete service" + serviceId)) {
         url = "/admin/service/delete/" + serviceId
         try {
