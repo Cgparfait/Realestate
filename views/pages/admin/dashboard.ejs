@@ -162,9 +162,8 @@
       const editService = async (event, id) => {
         event.preventDefault()
 
-        alert(id)
-        title = document.getElementById(id + "-title").innerText
-        description = document.getElementById(id + "-description").innerText
+        const title = document.getElementById(id + "-title").innerText
+        const description = document.getElementById(id + "-description").innerText
 
         console.log(title, description)
 
