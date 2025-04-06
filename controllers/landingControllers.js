@@ -67,7 +67,7 @@ async function renderHomePage(req, res) {
     try {
         const services = await servicesQueries.getAllServices()
         const contact_info = await contactQueries.get_contact_information()
-
+        if (!contact_info) return res.send("Failed to Load requirements for " + req.path) 
         res.render("./pages/home", { services, contact_info })
     }
     catch {
@@ -94,8 +94,8 @@ function sendMail(req, res) {
 
     sendEmail(
         process.env.EMAIL_FROM,
-        // process.env.EMAIL_TO, // deployment
-        process.env.EMAIL_FROM, // production
+        process.env.EMAIL_TO, // deployment
+        // process.env.EMAIL_FROM, // production
         "Lioness Homes, You got new contact information!",
         `Name: ${name}\nPhone: ${phone}\nEmail: ${email}\nAddress: ${address}\nMessage: ${message}`
     )

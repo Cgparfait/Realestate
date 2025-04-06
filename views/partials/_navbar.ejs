@@ -1,4 +1,4 @@
-<header class="navbar border-b-4 border-amber-400 sticky top-0 bg-gray-800 z-50 shadow-lg dotted-overlay">
+<header class="navbar">
     <div class="container mx-auto flex justify-between items-center px-8">
       <div class="flex items-center py-2">
         <a href="/">
@@ -8,25 +8,25 @@
       </div>
       <!-- Desktop Nav -->
       <nav class="hidden lg:flex space-x-10 gradient-text font-semibold">
-        <a href="#home" class="transition-colors hover:text-purple-600" onclick="mobileMenu.classList.toggle('hidden')">Home</a>
-        <a href="#services" class="transition-colors hover:text-purple-600" onclick="mobileMenu.classList.toggle('hidden')">Services</a>
-        <a href="#sell-stress-free" class="transition-colors hover:text-purple-600">About Us</a>
-        <a href="#how-it-works" class="transition-colors hover:text-purple-600">How It Works</a>
-        <a href="#testimonials" class="transition-colors hover:text-purple-600">Testimonials</a>
-        <a href="#contact" class="transition-colors hover:text-purple-600">Contact</a>
+        <a href="#home" class="nav-item" onclick="mobileMenu.classList.toggle('hidden')">Home</a>
+        <a href="#services" class="nav-item" onclick="mobileMenu.classList.toggle('hidden')">Services</a>
+        <a href="#sell-stress-free" class="nav-item">About Us</a>
+        <a href="#how-it-works" class="nav-item">How It Works</a>
+        <a href="#testimonials" class="nav-item">Testimonials</a>
+        <a href="#contact" class="nav-item">Contact</a>
       </nav>
       <!-- Mobile Menu Button -->
-      <button id="mobile-menu-button" class="lg:hidden text-gray-800 focus:outline-none">
+      <button id="mobile-menu-button" class="lg:hidden text-gray-200 focus:outline-none">
         <i class="fas fa-bars text-2xl"></i>
       </button>
     </div>
     <!-- Mobile Dropdown Menu -->
-    <div id="mobile-menu" class="lg:hidden hidden bg-white text-gray-800">
-      <a href="#home" class="block px-8 py-4 hover:bg-purple-50" onclick="hideNavbar()">Home</a>
-      <a href="#services" class="block px-8 py-4 hover:bg-purple-50" onclick="hideNavbar()">Services</a>
-      <a href="#sell-stress-free" class="block px-8 py-4 hover:bg-purple-50" onclick="hideNavbar()">About Us</a>
-      <a href="#how-it-works" class="block px-8 py-4 hover:bg-purple-50" onclick="hideNavbar()">How It Works</a>
-      <a href="#testimonials" class="block px-8 py-4 hover:bg-purple-50" onclick="hideNavbar()">Testimonials</a>
-      <a href="#contact" class="block px-8 py-4 hover:bg-purple-50" onclick="hideNavbar()">Contact</a>
+    <div id="mobile-menu" class="mobile-menu">
+      <a href="#home" class="mob-nav-item" onclick="hideNavbar()">Home</a>
+      <a href="#services" class="mob-nav-item" onclick="hideNavbar()">Services</a>
+      <a href="#sell-stress-free" class="mob-nav-item" onclick="hideNavbar()">About Us</a>
+      <a href="#how-it-works" class="mob-nav-item" onclick="hideNavbar()">How It Works</a>
+      <a href="#testimonials" class="mob-nav-item" onclick="hideNavbar()">Testimonials</a>
+      <a href="#contact" class="mob-nav-item" onclick="hideNavbar()">Contact</a>
     </div>
   </header>
