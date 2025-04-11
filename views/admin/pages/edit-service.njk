@@ -51,3 +51,36 @@
       </div>
     </main>
   {% endblock %}
+
+  {% block scripts %}
+    <script>
+      // Service selection handler
+      const services = {{services | dump | safe }}
+      document
+        .getElementById('serviceSelect')
+        .addEventListener('change', (e) => {
+          const service = services.find(services => services._id === e.target.value);
+          console.log(service);
+          if (service) {
+            document
+              .getElementById('titleInput')
+              .value = service.title || '';
+            document
+              .getElementById('descriptionInput')
+              .value = service.description || '';
+          }
+        });
+
+      // Close sidebar when clicking outside on mobile
+      document.addEventListener('click', (e) => {
+        const sidebar = document.querySelector('.sidebar');
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+
+        if (window.innerWidth < 768 && !sidebar.contains(e.target) && e.target !== sidebarToggle && !sidebarToggle.contains(e.target)) {
+          sidebar
+            .classList
+            .remove('sidebar-open');
+        }
+      });
+    </script>
+  {% endblock %}

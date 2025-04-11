@@ -33,14 +33,16 @@ router.get('/logout', (req, res) => {
 // login
 router.get('/login', (req, res) => { res.render("./admin/pages/login", { error: false }) })
 router.post('/login', async (req, res) => {
-    const { username, password } = req.body
+    let { username, password } = req.body
+    username = username.toLowerCase().trim()
+
     err = {}
     if (!username) err.username = "Username is required"
     if (!password) err.password = "Password is required"
-    if (err.username || err.password) return res.render("./pages/admin/login", { error: "Username or password can not be empty" })
+    if (err.username || err.password) return res.render("./admin/pages/login", { error: "Username or password can not be empty" })
 
     try {
-        const user = await User.findOne({ username: username, password: password })
+        const user = await User.findOne({ username, password: password })
         if (!user) return res.render("./admin/pages/login", { error: "Invalid credentials" })
 
         const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, { expiresIn: '1h' })
@@ -54,7 +56,7 @@ router.post('/login', async (req, res) => {
 })
 
 // Secure routes
-// router.use(authMiddleware)
+router.use(authMiddleware)
 
 router.get("/service/edit", async (req, res) => {
     const services = await Service.find()
@@ -184,7 +186,7 @@ router.post("/contact/edit", async (req, res) => {
 
     try {
         const contactUpdated = await Contact.updateOne({ _id: id }, { $set: newData })
-        if (!contactUpdated) return res.status(404).json({ error: "Failed to update service" })
+        if (!contactUpdated.modifiedCount) return res.status(404).json({ error: "Failed to update service" })
 
         res.json(contactUpdated)
     }
