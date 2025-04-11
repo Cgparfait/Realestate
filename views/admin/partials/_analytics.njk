@@ -1,0 +1,22 @@
+<h1 class="text-2xl font-bold mb-4">Monthly Insights</h1>
+<!-- Cards -->
+<div class="rounded-lg bg-white shadow-lg sm:grid sm:grid-cols-3">
+  <div class="flex flex-col border-b border-gray-100 p-6 text-center sm:border-0 sm:border-r">
+    <div class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
+      Total Clicks
+    </div>
+    <div class="order-1 text-3xl font-extrabold text-gray-700">{{ search_metrics.organic_google_search_clicks }}</div>
+  </div>
+  <div class="flex flex-col border-t border-b border-gray-100 p-6 text-center sm:border-0 sm:border-l sm:border-r">
+    <div class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
+      Click Through Rate
+    </div>
+    <div class="order-1 text-3xl font-extrabold text-gray-700">{{ search_metrics.organic_google_search_click_through_rate | round(1) }}%</div>
+  </div>
+  <div class="flex flex-col border-t border-gray-100 p-6 text-center sm:border-0 sm:border-l">
+    <div class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
+      Total Impressions
+    </div>
+    <div class="order-1 text-3xl font-extrabold text-gray-700">{{ search_metrics.organic_google_search_impressions }}</div>
+  </div>
+</div>

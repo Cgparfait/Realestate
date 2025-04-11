@@ -1,0 +1,44 @@
+{% extends "../base.njk" %}
+
+{% block content %}
+<main class="flex-1 overflow-y-auto p-6">
+  <div class="max-w-4xl mx-auto">
+    <!-- Page Header -->
+    <div class="mb-8">
+      <h2 class="text-xl font-bold text-gray-900">Create Service</h2>
+      <p class="text-gray-600">Add new service to the list of services</p>
+    </div>
+
+    <!-- Form Card -->
+    <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+      <form data-ajax-form action="/admin/service/create/" method="post" class="p-6">
+        <input type="hidden" name="id" id="_id">
+
+        <div class="space-y-6">
+
+          <!-- Title Field -->
+          <div class="form-group">
+            <label for="titleInput" class="form-label">Service Title</label>
+            <textarea id="titleInput" name="title" rows="3" placeholder="Enter service title" class="form-input" required></textarea>
+          </div>
+          <!-- Description Field -->
+          <div class="form-group">
+            <label for="descriptionInput" class="form-label">Service Description</label>
+            <textarea id="descriptionInput" name="description" rows="5" placeholder="Enter detailed description" class="form-input"></textarea>
+          </div>
+
+          <!-- Form Actions -->
+          <div class="flex justify-end space-x-3 pt-4">
+            <a href="/admin" class="px-6 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 transition">
+              Cancel
+            </a>
+            <button type="submit" class="btn-primary">
+              Save Changes
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+{% endblock %}

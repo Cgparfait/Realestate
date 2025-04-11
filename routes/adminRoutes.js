@@ -11,10 +11,10 @@ const User = require('../models/user')
 
 
 // dashboard
-router.get('/', authMiddleware, async (req, res) => {
+router.get("/", authMiddleware, async (req, res) => {
     try {
         const search_metrics = await adminControllers.getOrganicSearchMetrics()
-        res.render("./admin/pages/dashboard", { search_metrics })
+        res.render("./admin/pages/dashboard", { search_metrics, activeNav: "dashboard" })
     }
     catch (err) {
         console.error("Failed to fetch search metrics or services data" + err)
@@ -24,8 +24,14 @@ router.get('/', authMiddleware, async (req, res) => {
 
 
 
+// logout 
+router.get('/logout', (req, res) => {
+    req.session.token = null
+    res.redirect("/admin/login")
+})
+
 // login
-router.get('/login', (req, res) => { res.render("./pages/admin/login", { error: false }) })
+router.get('/login', (req, res) => { res.render("./admin/pages/login", { error: false }) })
 router.post('/login', async (req, res) => {
     const { username, password } = req.body
     err = {}
@@ -35,7 +41,7 @@ router.post('/login', async (req, res) => {
 
     try {
         const user = await User.findOne({ username: username, password: password })
-        if (!user) return res.render("./pages/admin/login", { error: "Invalid credentials" })
+        if (!user) return res.render("./admin/pages/login", { error: "Invalid credentials" })
 
         const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, { expiresIn: '1h' })
         req.session.token = token
@@ -48,19 +54,17 @@ router.post('/login', async (req, res) => {
 })
 
 // Secure routes
-router.use(authMiddleware)
-router.get("/services", (req, res) => {
-    res.render("./pages/admin/services")
-})
+// router.use(authMiddleware)
+
 router.get("/service/edit", async (req, res) => {
     const services = await Service.find()
     if (!services) return res.status(404).json({ error: "services not found" });
 
-    res.render("./pages/admin/edit-service", { services })
+    res.render("./admin/pages/edit-service", { services: services, activeNav: "edit-service" })
 })
 
 router.get("/service/create", async (req, res) => {
-    res.render("./admin/pages/create-service")
+    res.render("./admin/pages/create-service", { activeNav: "create-service" })
 })
 
 // Json API
@@ -80,7 +84,7 @@ router.get("/all-services/", async (req, res) => {
 router.get("/service/delete", async (req, res) => {
     const services = await Service.find()
     if (!services) return res.status(404).json({ error: "services not found" });
-    res.render("./admin/pages/delete-service", { services })
+    res.render("./admin/pages/delete-service", { services: services, activeNav: "delete-service" })
 })
 
 router.post("/service/delete", async (req, res) => {
@@ -97,23 +101,6 @@ router.post("/service/delete", async (req, res) => {
         console.error(error)
         return res.status(404).json({ error: "failed to delete service" })
 
-    }
-})
-
-
-router.get("/service/:id", async (req, res) => {
-    const id = req.params.id
-    if (!id) return res.status(404).json("Service id not provided");
-
-    try {
-        const service = await Service.findOne({ _id: id })
-        if (!service) return res.status(404).json({ error: "service does not exist" });
-
-        res.json({ service })
-    }
-    catch (err) {
-        console.log(err)
-        return res.status(404).json({ error: "service does not exist" });
     }
 })
 
@@ -177,7 +164,7 @@ router.get("/contact/edit/", async (req, res) => {
     if (!contacts) return res.status(404).json({ error: "contacts not found" });
 
     const { email, phone, address, _id } = contacts[0]
-    res.render("./admin/pages/edit-contact", { email: email, phone: phone, address: address, id: _id })
+    res.render("./admin/pages/edit-contact", { email: email, phone: phone, address: address, id: _id, activeNav: "edit-contact" })
 })
 
 router.post("/contact/edit", async (req, res) => {

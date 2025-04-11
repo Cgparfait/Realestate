@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <!-- head content -->
+        {% include "../partials/_headcontent.njk" %}
+    </head>
+
+    <body class="bg-[#F9FAFB] text-md">
+        <!-- share -->
+        {% include "../partials/_share.njk" %}
+
+        <!-- Back to Top Button -->
+        {% include "../partials/_backtotop.njk" %}
+
+        <!-- model dialog -->
+        {% include "../partials/_modeldialog.njk" %}
+
+        <!-- Topbar -->
+        {% include "../partials/_topbar.njk" %}
+
+        <!-- navbar -->
+        {% include "../partials/_navbar.njk" %}
+
+        {% block content %}{% endblock %}
+
+        <!-- Footer -->
+        {% include "../partials/_footer.njk" %}
+
+        <!-- JavaScript -->
+        {% include "../partials/_scripts.njk" %}
+
+    </body>
+
+</html>

@@ -5,19 +5,31 @@ const landingRoutes = require("./routes/landingRoutes")
 const adminRoutes = require("./routes/adminRoutes")
 const session = require("express-session")
 const app = express();
+const nunjucks = require('nunjucks');
 
 
 // set view engine
-app.set('view engine', 'ejs');
+// Set views directory
+app.set('views', path.join(__dirname, 'views'));
+
+// Configure Nunjucks
+nunjucks.configure(app.get('views'), {
+    autoescape: true,
+    express: app,
+    watch: true, // Auto-reload templates in development
+    noCache: process.env.NODE_ENV !== 'production' // Disable cache in dev
+});
+
+app.set('view engine', 'njk');
 app.use(express.static(path.join(__dirname, "public")));
-app.set("views", path.join(__dirname, "views"));
+// app.set("views", path.join(__dirname, "views"));
 
 // sessions
 app.use(session({
     secret: process.env.SECRET_KEY,
     resave: false,
     saveUninitialized: false,
-    cookie: {secure: false, httpOnly: true, maxAge:600000}
+    cookie: { secure: false, httpOnly: true, maxAge: 600000 }
 }))
 
 

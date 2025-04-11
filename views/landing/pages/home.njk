@@ -1,0 +1,29 @@
+{% extends "./base.njk" %}
+
+{% block content %}
+  <!-- Hero Section -->
+  {% include "../partials/_hero.njk" %}
+
+  <!-- Services Section -->
+  {% set service_limit = 6%}
+  {% include "../partials/_services.njk" %}
+
+  <!-- Section 1: Sell Your Home Stress-Free -->
+  {% include "../partials/_aboutus.njk" %}
+
+  <!-- Section 2: The Lioness Homes Promise -->
+  {% include "../partials/_ourpromise.njk" %}
+
+  <!-- Why Choose Us -->
+  {% include "../partials/_whychoseus.njk" %}
+
+  <!-- How It Works Section -->
+  {% include "../partials/_howitworks.njk" %}
+
+  <!-- Testimonials Section -->
+  {% include "../partials/_testimonials.njk" %}
+
+  <!-- Contact Section -->
+  {% include "../partials/_contact.njk" %}
+
+{% endblock %}

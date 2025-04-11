@@ -1,0 +1,53 @@
+{% extends "../base.njk" %}
+
+{% block content%}
+  <main class="flex-1 overflow-y-auto p-6">
+    <div class="max-w-4xl mx-auto">
+      <!-- Page Header -->
+      <div class="mb-8">
+        <h2 class="text-xl font-bold text-gray-900">Edit Service</h2>
+        <p class="text-gray-600">Update existing service details</p>
+      </div>
+
+      <!-- Form Card -->
+      <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+        <form action="/admin/service/edit/" data-ajax-form method="post" class="p-6">
+          <div class="space-y-6">
+            <!-- Service Selection -->
+            <div class="space-y-2">
+              <label for="serviceSelect" class="block text-sm font-medium text-gray-700">Select Service to Edit</label>
+              <select id="serviceSelect" name="id" class="custom-select w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition" required>
+                <option value="" disabled selected>Choose a service...</option>
+                {% for service in services %}
+                  <option value="{{service._id}}">{{service.title}}</option>
+                  {% endfor%}
+                </select>
+              </div>
+
+              <!-- Title Field -->
+              <div class="space-y-2">
+                <label for="titleInput" class="block text-sm font-medium text-gray-700">Service Title</label>
+                <textarea id="titleInput" name="title" rows="3" placeholder="Enter service title" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition" required></textarea>
+              </div>
+
+              <!-- Description Field -->
+              <div class="space-y-2">
+                <label for="descriptionInput" class="block text-sm font-medium text-gray-700">Service Description</label>
+                <textarea id="descriptionInput" name="description" rows="5" placeholder="Enter detailed description" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"></textarea>
+              </div>
+
+              <!-- Form Actions -->
+              <div class="flex justify-end space-x-3 pt-4">
+                <a href="/admin" class="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition">
+                    Cancel
+                  </a>
+                <button type="submit" class="px-6 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition">
+                    Save Changes
+                  </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+  {% endblock %}
