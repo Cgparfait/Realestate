@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel - Lioness Homes</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/admin-tailwind.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .sidebar {
+      height: 100vh;
+      height: 100dvh;
+      position: fixed;
+      width: 16rem;
+    }
+
+    .main-content {
+      margin-left: 16rem;
+      width: calc(100% - 16rem);
+    }
+
+    .custom-select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+      background-position: right 0.5rem center;
+      background-repeat: no-repeat;
+      background-size: 1.5em 1.5em;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        transform: translateX(-100%);
+      }
+
+      .sidebar-open {
+        transform: translateX(0);
+      }
+
+      .main-content {
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50 text-sm">
+  <div class="flex min-h-screen">
+    <!-- Sidebar -->
+    <%- include("../partials/_sidebar.ejs") %>
+
+    <!-- Main Content -->
+    <div class="main-content flex-1 flex flex-col">
+      <!-- Top Navigation -->
+      <header class="bg-white shadow-sm z-10 sticky top-0">
+        <div class="flex items-center justify-between p-4">
+          <button id="sidebar-toggle" class="md:hidden text-gray-600">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+          <div class="flex items-center space-x-4">
+            <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-medium">AD</div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Page Content -->
+      <main class="flex-1 overflow-y-auto p-6">
+        <div class="max-w-4xl mx-auto">
+          <!-- Page Header -->
+          <div class="mb-8">
+            <h2 class="text-xl font-bold ">Edit Service</h2>
+            <p class="text-gray-600">Update existing service details</p>
+          </div>
+
+          <!-- Form Card -->
+          <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+            <form data-ajax-form action="/admin/service/delete/" method="post" class="p-6">
+              <input type="hidden" name="id" id="_id">
+
+              <div class="space-y-6">
+                <!-- Service Selection -->
+                <div class="form-group">
+                  <label for="serviceSelect" class="form-label">Select Service to Edit</label>
+                  <select id="serviceSelect" name="serviceSelect" class="form-input" required>
+                    <option value="" disabled selected>Choose a service...</option>
+                    <% services.forEach(service => { %>
+                    <option value="<%= service.id %>"><%= service.title %></option>
+                    <% }) %>
+                  </select>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="flex justify-end space-x-3 pt-4">
+                  <a href="/admin" class="px-6 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 transition">
+                    Cancel
+                  </a>
+                  <button type="submit" class="btn-primary">
+                    Delete Service
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    // Sidebar toggle for mobile
+    document.getElementById('sidebar-toggle').addEventListener('click', () => {
+      document.querySelector('.sidebar').classList.toggle('sidebar-open');
+    });
+
+    // Service selection handler
+    const services = <%- JSON.stringify(services) %>;
+    document.getElementById('serviceSelect').addEventListener('change', (e) => {
+      const service = services.find(s => s._id === e.target.value);
+      if (service) {
+        document.getElementById('_id').value = service._id;
+        document.getElementById('titleInput').value = service.title || '';
+        document.getElementById('descriptionInput').value = service.description || '';
+      }
+    });
+
+    // Close sidebar when clicking outside on mobile
+    document.addEventListener('click', (e) => {
+      const sidebar = document.querySelector('.sidebar');
+      const sidebarToggle = document.getElementById('sidebar-toggle');
+
+      if (window.innerWidth < 768 &&
+        !sidebar.contains(e.target) &&
+        e.target !== sidebarToggle &&
+        !sidebarToggle.contains(e.target)) {
+        sidebar.classList.remove('sidebar-open');
+      }
+    });
+  </script>
+  <script src="/js/handle-submit.js"></script>
+</body>
+
+</html>

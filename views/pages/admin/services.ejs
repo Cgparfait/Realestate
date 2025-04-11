@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Panel</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./css/admin-tailwind.css">
 </head>
 
 <body class="bg-gray-100">
@@ -19,14 +19,9 @@
         <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">
           Dashboard
         </a>
-        <a href="#" onclick="toggleDropdown(this)" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">
+        <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">
           Services
         </a>
-        <div class="ml-4 hidden">
-          <a href="#" class="px-4 py-2.5 block transition duration-200 hover:bg-gray-700 rounded">Create service</a>
-          <a href="/admin/service/edit" class="px-4 py-2.5 block transition duration-200 hover:bg-gray-700 rounded">Edit Service</a>
-          <a href="#" class="px-4 py-2.5 block transition duration-200 hover:bg-gray-700 rounded">Delete Service</a>
-        </div>
         <a href="#" onclick="toggleDropdown(this)" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">
           Contact info
         </a>
@@ -57,64 +52,11 @@
           </button>
         </div>
       </div>
-
-      <!-- Main Content Area -->
-      <div class="p-6">
-        <%- include('../../partials/admin/_create-service-modal') %>
-        <%#- include('../../partials/admin/_edit-service-modal') %>
-
-        <h1 class="text-2xl font-bold mb-4">Monthly Insights</h1>
-        <!-- Cards -->
-        <div class="rounded-lg bg-white shadow-lg sm:grid sm:grid-cols-3">
-          <div class="flex flex-col border-b border-gray-100 p-6 text-center sm:border-0 sm:border-r">
-            <div class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
-              Total Clicks
-            </div>
-            <div class="order-1 text-3xl font-extrabold text-gray-700"><%= search_metrics.organic_google_search_clicks  %></div>
-          </div>
-          <div class="flex flex-col border-t border-b border-gray-100 p-6 text-center sm:border-0 sm:border-l sm:border-r">
-            <div class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
-              Click Through Rate
-            </div>
-            <div class="order-1 text-3xl font-extrabold text-gray-700"><%= search_metrics.organic_google_search_click_through_rate.toFixed(1) %>%</div>
-          </div>
-          <div class="flex flex-col border-t border-gray-100 p-6 text-center sm:border-0 sm:border-l">
-            <div class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
-              Total Impressions
-            </div>
-            <div class="order-1 text-3xl font-extrabold text-gray-700"><%= search_metrics.organic_google_search_impressions  %></div>
-          </div>
-        </div>
-        <!-- <div class="py-4">
-          <h2 class="text-2xl font-bold mb-4 mt-8">Edit Contact Info</h2>
-          <form class="bg-white p-6 rounded-lg shadow-md">
-            <div class="mb-4">
-              <label class="block text-gray-700 text-sm font-bold mb-2" for="item-name">
-                Email
-              </label>
-              <input class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" id="item-name" type="text" placeholder="Enter item name">
-            </div>
-            <div class="mb-4">
-              <label class="block text-gray-700 text-sm font-bold mb-2" for="item-name">
-                Phone number
-              </label>
-              <input class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" id="item-name" type="text" placeholder="Enter item name">
-            </div>
-            <div class="mb-4">
-              <label class="block text-gray-700 text-sm font-bold mb-2" for="item-name">
-                Bussiness Location
-              </label>
-              <input class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" id="item-name" type="text" placeholder="Enter item name">
-            </div>
-            <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-200">
-              Update
-            </button>
-          </form>
-        </div> -->
-        <div class="py-4">
-          <!-- <h2 class="text-2xl font-bold mb-4 mt-8">Edit Contact Info</h2> -->
-          <%- include('../../partials/admin/_table') %>
-        </div>
+      <!-- boddy -->
+      <div class="p-8">
+        <a href="" class="text-blue-800 block hover:underline py-2 border-b">Add Service</a>
+        <a href="edit-service" class="text-blue-800 block hover:underline py-2 border-b">Edit Service</a>
+        <a href="" class="text-blue-800 block hover:underline py-2 border-b">Manage Services</a>
       </div>
     </div>
 

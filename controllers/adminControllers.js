@@ -144,4 +144,4 @@ function generate_analytics_api_key_file() {
 }
 
 
-module.exports = { getDashboard, login, deleteOneService, updateService }
+module.exports = { getDashboard, login, deleteOneService, getOrganicSearchMetrics, generate_analytics_api_key_file, updateService }

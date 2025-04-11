@@ -5,7 +5,8 @@
   "scripts": {
     "server": "nodemon index.js",
     "test": "jest",
-    "watch:css": "npx tailwindcss-cli@latest -i ./src/input.css -o ./public/css/tailwind.css --watch"
+    "watch:css": "npx tailwindcss-cli@latest -i ./src/input.css -o ./public/css/tailwind.css --watch",
+    "watchAdmin:css": "npx tailwindcss-cli@latest -i ./src/adminInput.css -o ./public/css/admin-tailwind.css --watch"
   },
   "author": "",
   "license": "ISC",

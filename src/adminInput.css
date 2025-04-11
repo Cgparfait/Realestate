@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.sidebar {
+    height: 100vh;
+    height: 100dvh;
+    position: fixed;
+    width: 16rem;
+}
+
+.sidebar-nav {
+    height: calc(100% - 68px);
+}
+
+.main-content {
+    margin-left: 16rem;
+    width: calc(100% - 16rem);
+}
+
+.form-group {
+    @apply flex flex-col space-y-2;
+}
+
+.form-label {
+    @apply font-medium text-gray-800;
+}
+
+.form-input {
+    @apply w-full px-4 py-2 border border-gray-300 rounded-md focus: outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition;
+}
+
+.btn-primary {
+    @apply px-6 py-3 bg-blue-600 text-white font-medium rounded-md hover: bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition;
+}
+
+.dropdown-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.dropdown-open {
+    max-height: 500px;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+    }
+
+    .sidebar-open {
+        transform: translateX(0);
+    }
+
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+@font-face {
+    font-family: 'customFont';
+    font-weight: normal;
+    font-style: normal;
+    src: url('./fonts/IBM Plex Sans.ttf') format('truetype'),
+}
+
+body {
+    @apply text-sm
+}
+
+.form-group {
+    @apply flex flex-col space-y-2;
+}
+
+.form-label {
+    @apply font-medium text-gray-800;
+}
+
+.form-input {
+    @apply w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition;
+}
+
+.btn-primary {
+    @apply px-6 py-3 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition;
+}

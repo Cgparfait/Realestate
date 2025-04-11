@@ -5,20 +5,63 @@ const adminMiddlewares = require("../middlewares/adminMiddlewares")
 const jwt = require("jsonwebtoken")
 const authMiddleware = require("../middlewares/auth")
 const Service = require('../models/services')
+const Contact = require('../models/contacts')
+const User = require('../models/user')
 
 
-// router.get('/login', adminMiddlewares.checkLoginCredentials, adminControllers.login)
-router.get('/', authMiddleware, adminControllers.getDashboard)
+
+// dashboard
+router.get('/', authMiddleware, async (req, res) => {
+    try {
+        const search_metrics = await adminControllers.getOrganicSearchMetrics()
+        res.render("./admin/pages/dashboard", { search_metrics })
+    }
+    catch (err) {
+        console.error("Failed to fetch search metrics or services data" + err)
+        res.send("failed to load requirements for the page, please contact the developer to fix issue")
+    }
+})
 
 
 
 // login
-router.get('/login', (req, res) => { res.render("./pages/admin/login") })
-router.post('/login', adminControllers.login)
+router.get('/login', (req, res) => { res.render("./pages/admin/login", { error: false }) })
+router.post('/login', async (req, res) => {
+    const { username, password } = req.body
+    err = {}
+    if (!username) err.username = "Username is required"
+    if (!password) err.password = "Password is required"
+    if (err.username || err.password) return res.render("./pages/admin/login", { error: "Username or password can not be empty" })
+
+    try {
+        const user = await User.findOne({ username: username, password: password })
+        if (!user) return res.render("./pages/admin/login", { error: "Invalid credentials" })
+
+        const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, { expiresIn: '1h' })
+        req.session.token = token
+        res.redirect("/admin/")
+    }
+    catch (error) {
+        console.log(error)
+        res.send("failed to login, please contact the developer to fix issue")
+    }
+})
 
 // Secure routes
+router.use(authMiddleware)
+router.get("/services", (req, res) => {
+    res.render("./pages/admin/services")
+})
+router.get("/service/edit", async (req, res) => {
+    const services = await Service.find()
+    if (!services) return res.status(404).json({ error: "services not found" });
 
+    res.render("./pages/admin/edit-service", { services })
+})
 
+router.get("/service/create", async (req, res) => {
+    res.render("./admin/pages/create-service")
+})
 
 // Json API
 router.get("/all-services/", async (req, res) => {
@@ -33,6 +76,30 @@ router.get("/all-services/", async (req, res) => {
         console.log(error)
     }
 })
+
+router.get("/service/delete", async (req, res) => {
+    const services = await Service.find()
+    if (!services) return res.status(404).json({ error: "services not found" });
+    res.render("./admin/pages/delete-service", { services })
+})
+
+router.post("/service/delete", async (req, res) => {
+    const id = req.body.id
+    if (!id) return res.status(404).json("Service id not provided");
+
+    try {
+        const deletedService = await Service.deleteOne({ _id: id })
+        if (!deletedService) return res.status(404).json({ error: "service not deleted" });
+
+        return res.json(deletedService)
+    }
+    catch (error) {
+        console.error(error)
+        return res.status(404).json({ error: "failed to delete service" })
+
+    }
+})
+
 
 router.get("/service/:id", async (req, res) => {
     const id = req.params.id
@@ -50,25 +117,10 @@ router.get("/service/:id", async (req, res) => {
     }
 })
 
-router.delete("/service/delete/:id", async (req, res) => {
-    const id = req.params.id
-    if (!id) return res.status(404).json("Service id not provided");
-
-    try {
-        const deletedService = await Service.deleteOne({ _id: id })
-        if (!deletedService) return res.status(404).json({ error: "service not deleted" });
-
-        return res.json(deletedService)
-    }
-    catch (error) {
-        console.error(error)
-        return res.status(404).json({ error: "failed to delete service" })
-
-    }
-})
 
 
-router.put("/service/create", async (req, res) => {
+
+router.post("/service/create", async (req, res) => {
     const { title, description } = req.body
     console.log(title, description)
 
@@ -93,8 +145,8 @@ router.put("/service/create", async (req, res) => {
 })
 
 
-router.patch("/service/edit/:id", async (req, res) => {
-    const id = req.params.id
+router.post("/service/edit/", async (req, res) => {
+    const id = req.body.id
     if (!id) return res.status(404).json("Service id not provided");
 
     const { title, description } = req.body
@@ -118,6 +170,42 @@ router.patch("/service/edit/:id", async (req, res) => {
 
 
 })
-// router.patch("/service/update/:id", adminMiddlewares.validateServiceUpdateAction, adminControllers.updateService)
+
+
+router.get("/contact/edit/", async (req, res) => {
+    const contacts = await Contact.find()
+    if (!contacts) return res.status(404).json({ error: "contacts not found" });
+
+    const { email, phone, address, _id } = contacts[0]
+    res.render("./admin/pages/edit-contact", { email: email, phone: phone, address: address, id: _id })
+})
+
+router.post("/contact/edit", async (req, res) => {
+    console.log("id")
+    const id = req.body.id
+    if (!id) return res.status(404).json("Service id not provided");
+
+    console.log("past id check")
+    const { email, phone, address } = req.body
+
+    if (!email && !phone && !address) return res.status(404).json({ error: "Please provide phone, email, physical address" })
+
+    const newData = {}
+    if (email) newData.email = email
+    if (phone) newData.phone = phone
+    if (address) newData.address = address
+
+    try {
+        const contactUpdated = await Contact.updateOne({ _id: id }, { $set: newData })
+        if (!contactUpdated) return res.status(404).json({ error: "Failed to update service" })
+
+        res.json(contactUpdated)
+    }
+    catch (error) {
+        console.error(error)
+        return res.status(404).json({ error: "Failed to update service" })
+    }
+})
+
 
 module.exports = router
