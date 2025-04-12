@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken")
 require("dotenv").config()
 
 const authMiddleware = (req, res, next) => {
-    const token = req.session.token
+    const token = req.cookies.token
 
     if (!token) {
         console.log({ error: "Unauthorized, token not working" })

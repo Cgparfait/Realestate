@@ -46,7 +46,13 @@ router.post('/login', async (req, res) => {
         if (!user) return res.render("./admin/pages/login", { error: "Invalid credentials" })
 
         const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, { expiresIn: '1h' })
-        req.session.token = token
+        // req.session.token = token
+        res.cookie("token", token, {
+            httpOnly: true,
+            maxAge: 86400000,
+            sameSite: "strict",
+            maxAge: 3600000  // 1 hour
+        })
         res.redirect("/admin/")
     }
     catch (error) {

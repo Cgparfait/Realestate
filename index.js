@@ -6,8 +6,7 @@ const adminRoutes = require("./routes/adminRoutes")
 const session = require("express-session")
 const app = express();
 const nunjucks = require('nunjucks');
-const MemoryStore = require("memorystore")(session)
-
+const cookieParser = require('cookie-parser');
 
 // set view engine
 // Set views directory
@@ -25,16 +24,18 @@ app.set('view engine', 'njk');
 app.use(express.static(path.join(__dirname, "public")));
 // app.set("views", path.join(__dirname, "views"));
 
+
+app.use(cookieParser()); // Enable cookie parsing
 // sessions
-app.use(session({
-    secret: process.env.SECRET_KEY,
-    resave: false,
-    saveUninitialized: false,
-    cookie: { secure: false, httpOnly: true, maxAge: 86400000 },
-    store: new MemoryStore({
-        checkPeriod: 86400000 // prune expired entries every 24h
-    })
-}))
+// app.use(session({
+//     secret: process.env.SECRET_KEY,
+//     resave: false,
+//     saveUninitialized: false,
+//     cookie: { secure: false, httpOnly: true, maxAge: 86400000 },
+//     store: new MemoryStore({
+//         checkPeriod: 86400000 // prune expired entries every 24h
+//     })
+// }))
 
 
 // body parser middleware
