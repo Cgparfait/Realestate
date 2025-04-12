@@ -6,6 +6,7 @@ const adminRoutes = require("./routes/adminRoutes")
 const session = require("express-session")
 const app = express();
 const nunjucks = require('nunjucks');
+const MemoryStore = require("memorystore")(session)
 
 
 // set view engine
