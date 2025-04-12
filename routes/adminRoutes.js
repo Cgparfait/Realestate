@@ -27,6 +27,7 @@ router.get("/", authMiddleware, async (req, res) => {
 // logout 
 router.get('/logout', (req, res) => {
     res.clearCookie("token")
+    res.redirect("/admin/login")
 })
 
 // login
