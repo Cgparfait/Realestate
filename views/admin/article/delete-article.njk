@@ -1,0 +1,43 @@
+{% extends "../base.njk" %}
+
+{% block content %}
+  <main class="flex-1 overflow-y-auto p-6">
+    <div class="max-w-4xl mx-auto">
+      <!-- Page Header -->
+      <div class="mb-8">
+        <h2 class="text-xl font-bold ">Delete Article</h2>
+        <p class="text-gray-600">Delete existing article</p>
+      </div>
+
+      <!-- Form Card -->
+      <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+        <form data-ajax-form action="/admin/article/delete/" method="post" class="p-6">
+          <div class="space-y-6">
+            <!-- Article Selection -->
+            <div class="form-group">
+              <label for="articleSelect" class="form-label">Select Article to Edit</label>
+              <select id="articleSelect" name="id" class="form-input" required>
+                <option value="" disabled selected>Choose a article to delete...</option>
+                {% for article in articles %}
+                  <option value="{{article.id}}">{{article.title}}</option>
+                {% endfor %}
+              </select>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="flex justify-end space-x-3 pt-4">
+              <a href="/admin" class="px-6 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 transition">
+                    Cancel
+                  </a>
+              <button type="submit" class="btn-primary">
+                    Delete Article
+                  </button>
+            </div>
+          </select>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+</main>
+{% endblock %}

@@ -1,0 +1,224 @@
+{% extends "../base.njk" %}
+
+{% block header%}
+
+    <script src="
+https://cdn.jsdelivr.net/npm/tinymce@6.8.2/tinymce.min.js
+"></script>
+    <link href="
+https://cdn.jsdelivr.net/npm/tinymce-all-in-one@4.9.5/skins/lightgray/skin.min.css
+" rel="stylesheet">
+{% endblock %}
+{% block content %}
+    <main class="flex-1 overflow-y-auto p-6">
+        <div class="max-w-4xl mx-auto">
+            <!-- Page Header -->
+            <div class="mb-8">
+                <h2 class="text-xl font-bold text-gray-900">Create New Article</h2>
+                <p class="text-gray-600">Add new article to the list of articles</p>
+            </div>
+
+            <!-- Form Card -->
+            <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                <form action="/admin/article/save-article" method="post" class="p-6" id="article-form" onsubmit="submitForm(event)" enctype="multipart/form-data">
+
+                    <div class="space-y-6">
+
+                        <div class="form-group">
+                            <label for="titleInput" class="form-label">Article Title</label>
+                            <input type="text" id="titleInput" name="title" rows="3" placeholder="Enter article title" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="titleInput" class="form-label">Article description</label>
+                            <textarea type="description" id="description-input" name="description" rows="3" placeholder="Article description" class="form-input" required>
+                            </textarea>
+                        </div>
+
+                        <!-- Title Field -->
+                        <div class="form-group">
+                            <label for="titleInput" class="form-label">Upload image</label>
+                            <input type="file" id="titleInput" name="thumbnail" rows="3" placeholder="Enter service title" class="form-input" required>
+                        </div>
+                        <!-- Description Field -->
+                        <div class="form-group">
+                            <label for="descriptionInput" class="form-label">Article content</label>
+                            <textarea id="myEditor" name="content" rows="5" placeholder="Enter detailed description" class="form-input"></textarea>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="flex justify-end space-x-3 pt-4">
+                            <a href="/admin" class="px-6 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 transition">Cancel</a>
+                            <button type="submit" class="btn-primary" id="save-article">Save Changes</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        tinymce.init({
+            selector: '#myEditor',
+            height: 800,
+            plugins: [
+                'advlist',
+                'autolink',
+                'lists',
+                'link',
+                'image',
+                'charmap',
+                'preview',
+                'anchor',
+                'searchreplace',
+                'visualblocks',
+                'code',
+                'fullscreen',
+                'insertdatetime',
+                'media',
+                'table',
+                'code',
+                'help',
+                'wordcount',
+                'emoticons',
+                'autoresize',
+                'autosave',
+                'directionality',
+                'pagebreak',
+                'quickbars',
+                'save',
+                'template',
+                'tinymcespellchecker',
+                // Premium plugins
+                'a11ychecker',
+                'advcode',
+                'advtable',
+                'checklist',
+                'export',
+                'footnotes',
+                'mediaembed',
+                'mergetags',
+                'powerpaste',
+                'casechange',
+                'permanentpen',
+                'pageembed',
+                'tinycomments',
+                'typography',
+                'tableofcontents'
+            ],
+            toolbar: 'undo redo | blocks | ' + 'bold italic forecolor backcolor | alignleft aligncenter ' + 'alignright alignjustify | bullist numlist outdent indent | ' + 'removeformat | help | image | media | table | code | fullscreen | ' + 'pagebreak | template | emoticons | export | footnotes | ' + 'tinycomments | tableofcontents',
+            toolbar_mode: 'sliding',
+            menubar: 'file edit view insert format tools table help',
+            menu: {
+                file: {
+                    title: 'File',
+                    items: 'newdocument restoredraft | preview | export | print | deleteallconversations'
+                },
+                edit: {
+                    title: 'Edit',
+                    items: 'undo redo | cut copy paste pastetext | selectall | searchreplace'
+                },
+                view: {
+                    title: 'View',
+                    items: 'code | visualaid visualchars visualblocks | spellchecker | preview | fullscreen | showcomments'
+                },
+                insert: {
+                    title: 'Insert',
+                    items: 'image link media addcomment pageembed template codesample inserttable | charmap emoticons hr | pagebreak nonbreaking anchor tableofcontents | insertdatetime'
+                },
+                format: {
+                    title: 'Format',
+                    items: 'bold italic underline strikethrough superscript subscript codeformat | styles blocks fontfamily fontsize align lineheight | forecolor backcolor | language | removeformat'
+                },
+                tools: {
+                    title: 'Tools',
+                    items: 'spellchecker spellcheckerlanguage | a11ycheck code wordcount'
+                },
+                table: {
+                    title: 'Table',
+                    items: 'inserttable | cell row column | advtablesort | tableprops deletetable'
+                },
+                help: {
+                    title: 'Help',
+                    items: 'help'
+                }
+            },
+            // Premium plugin configurations
+            a11ychecker_level: 'aaa',
+            powerpaste_word_import: 'clean',
+            powerpaste_html_import: 'clean',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author Name',
+            mergetags_list: [
+                {
+                    value: 'First.Name',
+                    title: 'First Name'
+                }, {
+                    value: 'Email',
+                    title: 'Email'
+                }
+            ],
+            spellchecker_language: 'en',
+            spellchecker_dialog: true,
+            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
+        });
+    </script>
+    {# <script>
+        function submitForm(event) {
+            event.preventDefault()
+            tinymce.triggerSave()
+            const form = event.target;
+            const submitButton = form.querySelector('[type="submit"]');
+            const originalButtonText = submitButton
+                ?.textContent;
+
+            try {
+                // Show loading state
+                if (submitButton) {
+                    submitButton.disabled = true;
+                    submitButton.textContent = 'Processing...';
+                }
+
+                const formData = new FormData(form);
+                const response = await fetch(form.action || form.dataset.action, {
+                    method: form.method || 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: formData
+                });
+
+                if (!response.ok) 
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                
+                const data = await response.json();
+
+                // Custom success handler or default behavior
+                if (options.onSuccess) {
+                    options.onSuccess(data, form);
+                } else {
+                    alert(options.successMessage || 'Operation completed successfully');
+                    if (options.successRedirect) {
+                        window.location.href = options.successRedirect;
+                    }
+                }
+
+            } catch (error) {
+                // Custom error handler or default behavior
+                if (options.onError) {
+                    options.onError(error, form);
+                } else {
+                    alert(options.errorMessage || 'An error occurred. Please try again.');
+                    console.error('Form submission error:', error);
+                }
+            } finally {
+                // Restore button state
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.textContent = originalButtonText;
+                }
+            }
+        }
+    </script> #}
+{% endblock %}

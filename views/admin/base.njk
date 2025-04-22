@@ -7,6 +7,7 @@
     <title>Admin Panel - Lioness Homes</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="/css/admin-tailwind.css">
+    {% block header %}{% endblock %}
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
 
@@ -48,6 +49,8 @@
           width: 100%;
         }
       }
+      {% block styles %}
+      {% endblock %}
     </style>
   </head>
 

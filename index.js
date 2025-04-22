@@ -7,6 +7,7 @@ const session = require("express-session")
 const app = express();
 const nunjucks = require('nunjucks');
 const cookieParser = require('cookie-parser');
+const articleRoutes = require('./routes/articleRoutes');
 
 // set view engine
 // Set views directory
@@ -45,6 +46,7 @@ app.use(express.urlencoded({ extended: true }));
 // routes
 app.use('/', landingRoutes)
 app.use('/admin', adminRoutes)
+app.use('/article', articleRoutes)
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
