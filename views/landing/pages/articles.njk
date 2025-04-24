@@ -1,0 +1,307 @@
+{% extends "./base.njk" %}
+
+<!-- Custom Styles -->
+{% block styles %}
+  <style>
+    :root {
+      --primary-gradient: linear-gradient(135deg, #f59e0b 0%, #d97706 50%, #f59e0b 100%);
+      --secondary-gradient: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+    }
+
+    .gradient-text {
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .card-hover {
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      position: relative;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .featured-post-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60%;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+    }
+
+    .post-tag {
+      transition: all 0.2s ease;
+    }
+
+    .post-tag:hover {
+      transform: scale(1.05);
+    }
+
+    /* Micro-interactions */
+    .btn-micro:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-micro:active {
+      transform: translateY(1px);
+    }
+
+    /* Loading animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .animate-fade-in {
+      animation: fadeIn 0.6s ease-out forwards;
+    }
+
+    /* Gradient underline */
+    .gradient-underline {
+      position: relative;
+      display: inline-block;
+    }
+
+    .gradient-underline::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: var(--primary-gradient);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease;
+    }
+
+    .gradient-underline:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    /* Premium hover effects */
+    .hover-scale {
+      transition: transform 0.3s ease;
+    }
+
+    .hover-scale:hover {
+      transform: scale(1.03);
+    }
+
+    /* Stats counter animation */
+    @keyframes countUp {
+      from {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .stat-counter {
+      animation: countUp 1s ease-out forwards;
+    }
+  </style>
+{% endblock %}
+
+<!-- Content Navigation -->
+{# <div class="bg-white shadow-sm sticky top-0 z-40">
+      <div class="container mx-auto px-6">
+        <div class="flex overflow-x-auto scrollbar-hide py-4 gap-6">
+          <a href="#featured" class="whitespace-nowrap text-amber-600 font-bold border-b-2 border-amber-600 pb-2">Featured</a>
+          <a href="#latest" class="whitespace-nowrap text-gray-600 hover:text-amber-600 transition-colors">Latest Articles</a>
+          <a href="#market-trends" class="whitespace-nowrap text-gray-600 hover:text-amber-600 transition-colors">Market Trends</a>
+          <a href="#selling-guides" class="whitespace-nowrap text-gray-600 hover:text-amber-600 transition-colors">Selling Guides</a>
+          <a href="#financial-advice" class="whitespace-nowrap text-gray-600 hover:text-amber-600 transition-colors">Financial Advice</a>
+          <a href="#legal-insights" class="whitespace-nowrap text-gray-600 hover:text-amber-600 transition-colors">Legal Insights</a>
+        </div>
+      </div>
+    </div> #}
+
+<!-- Premium Article Content -->
+{% block content %}
+  <main class="py-16 bg-white">
+    <div class="container mx-auto px-6">
+
+      <!-- Premium Content Grid -->
+      <section class="mb-20">
+        <div class="flex items-center justify-between mb-8">
+          <h2 class="text-3xl font-bold font-montserrat gradient-text">Latest Articles</h2>
+          <div class="hidden md:flex space-x-4">
+            <button class="text-gray-600 hover:text-amber-600 transition-colors" id="view-grid">
+              <i class="fas fa-th-large"></i>
+            </button>
+            <button class="text-gray-600 hover:text-amber-600 transition-colors" id="view-list">
+              <i class="fas fa-list"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="articles-container">
+          <!-- Article 1 -->
+          {% for article in articles %}
+            <article class="bg-white rounded-xl shadow-md overflow-hidden card-hover animate-fade-in">
+              <div class="relative">
+                <a href="/blog/article/{{ article._id }}">
+                  <img src="{{article.thumbnail}}" alt="Home staging" class="w-full h-48 object-cover">
+                  <div class="absolute top-4 right-4">
+                    <span class="bg-amber-500 text-white text-xs font-bold px-2 py-1 rounded-full">New</span>
+                  </div>
+                </a>
+              </div>
+              <div class="p-6">
+                <div class="flex flex-wrap gap-2 mb-3">
+                  <a href="/article/category/selling-tips" class="bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-bold px-2 py-1 rounded-full transition-colors">Selling Tips</a>
+                  <a href="/article/category/home-improvement" class="bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-bold px-2 py-1 rounded-full transition-colors">Home Improvement</a>
+                </div>
+                <h3 class="text-xl font-bold font-montserrat mb-3">
+                  <a href="/blog/article/{{ article._id }}">
+                    {{ article.title }}
+                  </a>
+                </h3>
+                <p class="text-gray-600 mb-4">
+                  <a href="/blog/article/{{ article._id }}">
+                    {{ article.description }}
+                  </a>
+                </p>
+                <div class="flex items-center justify-between text-sm text-gray-500">
+                  <span>May 10, 2023 • 5 min read</span>
+                  <a href="/blog/article/{{ article._id }}" class="text-amber-600 font-semibold hover:underline flex items-center">
+                  Read <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                  </a>
+                </div>
+              </div>
+            </article>
+          {% endfor %}
+        </div>
+
+        {# <div class="text-center mt-12">
+              <a href="/article/archive" class="inline-block bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-8 rounded-lg transition-all btn-micro">
+            Load More Articles
+          </a>
+            </div> #}
+      </section>
+
+      {# <!-- Newsletter Section -->
+          <section id="newsletter" class="mb-20 bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-600 rounded-xl p-8 md:p-12 text-white">
+            <div class="max-w-4xl mx-auto text-center">
+              <h2 class="text-3xl font-bold font-montserrat mb-4">Get Exclusive Real Estate Insights</h2>
+              <p class="text-xl text-amber-100 mb-8">Subscribe to our premium newsletter for market analysis, selling strategies, and special offers</p>
+
+              <form class="flex flex-col md:flex-row gap-4 max-w-2xl mx-auto">
+                <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded-lg focus:outline-none text-gray-800">
+                <button type="submit" class="bg-blue-800 hover:bg-blue-900 text-white font-bold px-6 py-3 rounded-lg transition-all btn-micro">
+              Subscribe Now
+            </button>
+              </form>
+
+              <p class="text-sm text-amber-100 mt-4">We respect your privacy. Unsubscribe at any time.</p>
+            </div>
+          </section> #}
+
+      <!-- Category Highlights -->
+      {# <section class="mb-20">
+            <h2 class="text-3xl font-bold font-montserrat gradient-text text-center mb-12">Explore by Category</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <!-- Category 1 -->
+              <a href="/article/category/market-updates" class="bg-white rounded-xl shadow-md overflow-hidden card-hover group">
+                <div class="h-40 bg-blue-600 flex items-center justify-center">
+                  <i class="fas fa-chart-line text-white text-4xl"></i>
+                </div>
+                <div class="p-6">
+                  <h3 class="text-xl font-bold font-montserrat mb-2 group-hover:text-amber-600 transition-colors">Market Updates</h3>
+                  <p class="text-gray-600">Latest trends and data for Ohio's real estate market</p>
+                </div>
+              </a>
+
+              <!-- Category 2 -->
+              <a href="/article/category/selling-tips" class="bg-white rounded-xl shadow-md overflow-hidden card-hover group">
+                <div class="h-40 bg-amber-500 flex items-center justify-center">
+                  <i class="fas fa-home text-white text-4xl"></i>
+                </div>
+                <div class="p-6">
+                  <h3 class="text-xl font-bold font-montserrat mb-2 group-hover:text-amber-600 transition-colors">Selling Tips</h3>
+                  <p class="text-gray-600">Strategies to maximize your home's value</p>
+                </div>
+              </a>
+
+              <!-- Category 3 -->
+              <a href="/article/category/legal-guides" class="bg-white rounded-xl shadow-md overflow-hidden card-hover group">
+                <div class="h-40 bg-green-600 flex items-center justify-center">
+                  <i class="fas fa-gavel text-white text-4xl"></i>
+                </div>
+                <div class="p-6">
+                  <h3 class="text-xl font-bold font-montserrat mb-2 group-hover:text-amber-600 transition-colors">Legal Guides</h3>
+                  <p class="text-gray-600">Navigate contracts, disclosures, and regulations</p>
+                </div>
+              </a>
+
+              <!-- Category 4 -->
+              <a href="/article/category/financial-advice" class="bg-white rounded-xl shadow-md overflow-hidden card-hover group">
+                <div class="h-40 bg-purple-600 flex items-center justify-center">
+                  <i class="fas fa-piggy-bank text-white text-4xl"></i>
+                </div>
+                <div class="p-6">
+                  <h3 class="text-xl font-bold font-montserrat mb-2 group-hover:text-amber-600 transition-colors">Financial Advice</h3>
+                  <p class="text-gray-600">Maximize profits and minimize tax liabilities</p>
+                </div>
+              </a>
+            </div>
+          </section> #}
+    </div>
+  </main>
+{% endblock %}
+
+{% block scripts %}
+  <script>
+    // Simple back-to-top button functionality
+    const backToTopButton = document.getElementById('back-to-top');
+
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopButton
+          .classList
+          .remove('hidden');
+      } else {
+        backToTopButton
+          .classList
+          .add('hidden');
+      }
+    });
+
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    });
+
+    // Mobile menu toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuButton.addEventListener('click', () => {
+      mobileMenu
+        .classList
+        .toggle('hidden');
+    });
+
+    function hideNavbar() {
+      mobileMenu
+        .classList
+        .add('hidden');
+    }
+  </script>
+{% endblock %}

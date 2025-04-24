@@ -1,15 +1,61 @@
-<section id="contact" class="text-gray-800 py-24" style="scroll-margin-top: 30px;">
-  <div class="container mx-auto px-8">
-    <h2 class="text-4xl font-bold text-center mb-16">Contact Us</h2>
+<section id="contact" class="bg-white py-16 md:py-24" style="scroll-margin-top: 90px;">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <span class="text-amber-600 font-semibold text-sm mb-2 inline-block">GET IN TOUCH</span>
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Contact Lioness Homes</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">We're here to help with your property. Reach out anytime!</p>
+    </div>
+
+    <!-- Contact Form -->
     <form class="max-w-2xl mx-auto" method="post" action="/send-email" id="contact-form">
-      <input type="text" name="address" id="contact-address-input" placeholder="Enter property address" class="w-full px-8 py-4 mb-6 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-purple-500 border">
-      <input type="text" name="name" id="contact-name-input" placeholder="Your Name" class="w-full px-8 py-4 mb-6 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-purple-500 border">
-      <div class="md:flex gap-2">
-        <input type="text" name="phone" id="contact-phone-input" placeholder="Your Phone number" class="w-full px-8 py-4 mb-6 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-purple-500 border">
-        <input type="email" name="email" id="contact-email-input" placeholder="Your Email" class="w-full px-8 py-4 mb-6 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-purple-500 border">
+      <!-- Property Address -->
+      <div class="mb-6">
+        <label for="contact-address-input" class="block text-gray-700 text-sm font-medium mb-2">Property Address</label>
+        <input type="text" name="address" id="contact-address-input" placeholder="Enter your property address" 
+               class="w-full px-5 py-3 rounded-lg border border-gray-300 focus:border-amber-400 focus:ring-2 focus:ring-amber-200 outline-none transition-all text-gray-700 placeholder-gray-400">
       </div>
-      <textarea placeholder="Your Message" name="message" id="contact-message-input" class="w-full px-8 py-4 mb-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 border h-32 text-gray-700"></textarea>
-      <button type="submit" class="btn-primary px-10 py-4 rounded-lg text-white font-bold w-full">Send Message</button>
+
+      <!-- Name -->
+      <div class="mb-6">
+        <label for="contact-name-input" class="block text-gray-700 text-sm font-medium mb-2">Your Name</label>
+        <input type="text" name="name" id="contact-name-input" placeholder="First and last name" 
+               class="w-full px-5 py-3 rounded-lg border border-gray-300 focus:border-amber-400 focus:ring-2 focus:ring-amber-200 outline-none transition-all text-gray-700 placeholder-gray-400">
+      </div>
+
+      <!-- Contact Info -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div>
+          <label for="contact-phone-input" class="block text-gray-700 text-sm font-medium mb-2">Phone Number</label>
+          <input type="text" name="phone" id="contact-phone-input" placeholder="(937) 555-1234" 
+                 class="w-full px-5 py-3 rounded-lg border border-gray-300 focus:border-amber-400 focus:ring-2 focus:ring-amber-200 outline-none transition-all text-gray-700 placeholder-gray-400">
+        </div>
+        <div>
+          <label for="contact-email-input" class="block text-gray-700 text-sm font-medium mb-2">Email Address</label>
+          <input type="email" name="email" id="contact-email-input" placeholder="your@email.com" 
+                 class="w-full px-5 py-3 rounded-lg border border-gray-300 focus:border-amber-400 focus:ring-2 focus:ring-amber-200 outline-none transition-all text-gray-700 placeholder-gray-400">
+        </div>
+      </div>
+
+      <!-- Message -->
+      <div class="mb-8">
+        <label for="contact-message-input" class="block text-gray-700 text-sm font-medium mb-2">Your Message</label>
+        <textarea name="message" id="contact-message-input" rows="4" placeholder="Tell us about your property situation..." 
+                  class="w-full px-5 py-3 rounded-lg border border-gray-300 focus:border-amber-400 focus:ring-2 focus:ring-amber-200 outline-none transition-all text-gray-700 placeholder-gray-400"></textarea>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" 
+              class="w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-6 rounded-full transition-all flex items-center justify-center">
+        Send Message
+        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+        </svg>
+      </button>
+
+      <p class="text-gray-500 text-xs mt-4 text-center">
+        We'll get back to you within 24 hours. Serving all of Montgomery County.
+      </p>
     </form>
   </div>
 </section>

@@ -243,7 +243,7 @@ router.post('/contact/edit', async (req, res) => {
 // Create Article Page
 router.get('/article/create', async (req, res) => {
     const services = await Service.find();
-    res.render('./admin/article/create-article', {
+    res.render('./admin/pages/create-article', {
         services,
         activeNav: 'create-article'
     });
@@ -298,7 +298,7 @@ router.post('/article/save-article', upload.single('thumbnail'), async (req, res
 // Edit Article Page
 router.get('/article/edit', async (req, res) => {
     const articles = await Article.find();
-    res.render('./admin/article/edit-article', {
+    res.render('./admin/pages/edit-article', {
         articles,
         activeNav: 'edit-article'
     });
@@ -329,7 +329,7 @@ router.post('/article/edit', async (req, res) => {
 // Delete Article Page
 router.get('/article/delete', async (req, res) => {
     const articles = await Article.find();
-    res.render('./admin/article/delete-article', {
+    res.render('./admin/pages/delete-article', {
         articles,
         activeNav: 'delete-article'
     });

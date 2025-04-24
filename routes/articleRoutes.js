@@ -13,18 +13,6 @@ router.get('/', async (req, res) => {
     }
 });
 
-// 2. GET a article by slug
-router.get('/:id', async (req, res) => {
-    const { id } = req.params
-    try {
-        const article = await Article.findOne({ _id: id });
-        if (!article) return res.status(404).json({ message: 'Article not found' });
-
-        return res.render('./article/single', { article })
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
-});
 
 // 3. POST - Create a new article
 router.post('/', async (req, res) => {

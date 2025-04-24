@@ -1,0 +1,213 @@
+{% extends "./base.njk" %}
+
+<!-- Custom Styles -->
+{% block styles %}
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        montserrat: [
+                            'Montserrat', 'sans-serif'
+                        ],
+                        lato: ['Lato', 'sans-serif']
+                    },
+                    backgroundImage: {
+                        'primary-gradient': 'linear-gradient(135deg, #f59e0b 0%, #d97706 50%, #f59e0b 100%)',
+                        'secondary-gradient': 'linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%)'
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.6s ease-out forwards',
+                        'count-up': 'countUp 1s ease-out forwards'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            'from': {
+                                opacity: '0'
+                            },
+                            'to': {
+                                opacity: '1'
+                            }
+                        },
+                        countUp: {
+                            'from': {
+                                transform: 'translateY(20px)',
+                                opacity: '0'
+                            },
+                            'to': {
+                                transform: 'translateY(0)',
+                                opacity: '1'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .gradient-text {
+                @apply bg-primary-gradient bg-clip-text text-transparent;
+            }
+            .gradient-underline {
+                @apply relative inline-block;
+            }
+            .gradient-underline::after {
+                @apply content-[''] absolute bottom-[-4px] left-0 w-full h-[3px] bg-primary-gradient scale-x-0 origin-right transition-transform duration-300 ease-in-out;
+            }
+            .gradient-underline:hover::after {
+                @apply scale-x-100 origin-left;
+            }
+            .card-hover {
+                @apply transition-all duration-300 ease-[cubic-bezier(0.25,0.8,0.25,1)];
+            }
+            .card-hover:hover {
+                @apply -translate-y-[5px] shadow-lg;
+            }
+            .btn-micro {
+                @apply transition-all duration-200 ease-in-out;
+            }
+            .btn-micro:hover {
+                @apply -translate-y-[2px];
+            }
+            .btn-micro:active {
+                @apply translate-y-[1px];
+            }
+            .post-tag {
+                @apply transition-all duration-200 ease-in-out;
+            }
+            .post-tag:hover {
+                @apply scale-[1.05];
+            }
+            .hover-scale {
+                @apply transition-transform duration-300 ease-in-out;
+            }
+            .hover-scale:hover {
+                @apply scale-[1.03];
+            }
+            .article-content p {
+                @apply mb-5 leading-relaxed;
+            }
+            .article-content h2 {
+                @apply font-montserrat font-bold mt-10 mb-5 text-[1.75rem] bg-primary-gradient bg-clip-text text-transparent;
+            }
+            .article-content h3 {
+                @apply font-montserrat font-bold mt-8 mb-4 text-[1.5rem] text-blue-800;
+            }
+            .article-content ul {
+                @apply list-disc pl-8 mb-0;
+            }
+            .article-content li {
+                @apply mb-0;
+            }
+            .article-content blockquote {
+                @apply border-l-4 border-amber-500 pl-6 my-8 italic text-gray-600;
+            }
+            .article-content img {
+                @apply rounded-lg my-8 mx-auto max-w-full h-auto;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <main class="py-12 bg-white">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <!-- Article Header -->
+            <header class="mb-12">
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <a href="/article/category/selling-tips" class="bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-bold px-3 py-1 rounded-full transition-colors post-tag">Selling Tips</a>
+                    <a href="/article/category/home-improvement" class="bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-bold px-3 py-1 rounded-full transition-colors post-tag">Home Improvement</a>
+                    <span class="bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full">New</span>
+                </div>
+                <h1 class="text-3xl md:text-4xl font-bold font-montserrat mb-4">{{ article.title }}</h1>
+                <div class="flex items-center text-gray-600 mb-6">
+                    <div class="flex items-center mr-6">
+                        <i class="far fa-calendar-alt mr-2"></i>
+                        <span>May 10, 2023</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="far fa-clock mr-2"></i>
+                        <span>5 min read</span>
+                    </div>
+                </div>
+                <div class="relative rounded-xl overflow-hidden mb-8">
+                    <img src="{{article.thumbnail}}" alt="Home staging" class="w-full h-96 object-cover">
+                    <div class="absolute bottom-0 left-0 right-0 h-3/5 bg-gradient-to-t from-black/80 to-transparent"></div>
+                </div>
+            </header>
+
+            <!-- Article Body -->
+            <article class="article-content md:text-lg text-md">
+                {{article.content | safe}}
+            </article>
+
+            <!-- Article Footer -->
+            {# <footer class="mt-16 pt-8 border-t border-gray-200">
+                    <div class="flex flex-wrap gap-3 mb-8">
+                        <span class="font-medium">Tags:</span>
+                        <a href="/article/tag/home-staging" class="bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full transition-colors">Home Staging</a>
+                        <a href="/article/tag/selling-fast" class="bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full transition-colors">Selling Fast</a>
+                        <a href="/article/tag/interior-design" class="bg-gray-100 hover:bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full transition-colors">Interior Design</a>
+                    </div>
+
+                    <!-- Author Bio -->
+                    <div class="bg-gray-50 p-6 rounded-lg flex flex-col md:flex-row items-start gap-6 mb-12">
+                        <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Merhawit Abdala" class="w-20 h-20 rounded-full object-cover">
+                        <div>
+                            <h3 class="font-bold text-lg mb-2">Merhawit Abdala</h3>
+                            <p class="text-gray-600 mb-3">Founder & CEO of Lioness Homes with over 15 years experience in Ohio real estate. Specializes in helping homeowners maximize their property value through strategic improvements and staging.</p>
+                            <div class="flex space-x-4">
+                                <a href="#" class="text-gray-500 hover:text-blue-600">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="text-gray-500 hover:text-blue-400">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="text-gray-500 hover:text-gray-700">
+                                    <i class="fas fa-envelope"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Share Buttons -->
+                    <div class="mb-12">
+                        <h3 class="font-bold text-lg mb-4">Share this article</h3>
+                        <div class="flex space-x-4">
+                            <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center transition-colors">
+                                <i class="fab fa-facebook-f mr-2"></i> Share
+            </a>
+                            <a href="#" class="bg-blue-400 hover:bg-blue-500 text-white px-4 py-2 rounded-lg flex items-center transition-colors">
+                                <i class="fab fa-twitter mr-2"></i> Tweet
+            </a>
+                            <a href="#" class="bg-gray-700 hover:bg-gray-800 text-white px-4 py-2 rounded-lg flex items-center transition-colors">
+                                <i class="fab fa-linkedin-in mr-2"></i> Share
+            </a>
+                        </div>
+                    </div>
+
+                    <!-- Related Articles -->
+                    <div>
+                        <h3 class="font-bold text-2xl font-montserrat mb-6 gradient-text">You May Also Like</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <a href="/article/accurate-home-valuation" class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+                                <div class="p-6">
+                                    <h4 class="font-bold font-montserrat mb-2 hover:text-amber-600 transition-colors">Accurate Home Valuation: Beyond Zillow's Zestimate</h4>
+                                    <p class="text-gray-600 text-sm mb-3">Professional methods appraisers use to determine true market value</p>
+                                    <div class="text-sm text-gray-500">March 5, 2023 • 5 min read</div>
+                                </div>
+                            </a>
+                            <a href="/article/tax-efficient-selling" class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+                                <div class="p-6">
+                                    <h4 class="font-bold font-montserrat mb-2 hover:text-amber-600 transition-colors">Tax-Efficient Home Selling: Maximize Your Net Proceeds</h4>
+                                    <p class="text-gray-600 text-sm mb-3">Legal strategies to minimize capital gains and other taxes</p>
+                                    <div class="text-sm text-gray-500">March 28, 2023 • 6 min read</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </footer> #}
+        </div>
+    </main>
+{% endblock %}

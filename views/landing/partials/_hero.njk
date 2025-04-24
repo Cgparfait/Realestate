@@ -1,13 +1,45 @@
-<section class="hero-section animate-fade-in" id="home">
-    <div class="container mx-auto text-center px-6 leading-relaxed font-thin">
-      <h1 class="title">Need to Sell your Home Quickly?</h1>
-      <!-- <div class="typewriter-container">
-        <span id="typewriter-text" class="typewriter"></span>
-      </div> -->
-      <p class="description animate-fade-in">We buy houses in any condition, anywhere. Get your fair cash offer today-quick, hassle-free, and on your terms!</p>
-      <div class="md:justify-center animate-fade-in md:flex">
-        <input class="input" type="text" placeholder="Enter your property Address" id="home-address-field" onkeydown="if(event.key === 'Enter') { carryAddress(document.getElementById('home-address-field').value)}">
-        <button class="call-to-action" onclick="carryAddress(document.getElementById('home-address-field').value)">Get Your Cash Offer</button>
+<section class="relative bg-gray-50 py-20 md:py-32 overflow-hidden hero-section" id="home">
+  <!-- Decorative elements -->
+  
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="max-w-3xl mx-auto text-center">
+      <!-- Tagline -->
+      <span class="inline-block text-amber-600 font-semibold text-sm mb-3 animate-fade-in">TRUSTED HOME BUYER</span>
+      
+      <!-- Main heading -->
+      <h1 class="text-4xl md:text-5xl font-bold text-gray-200 mb-4 leading-tight animate-fade-in">
+        Need to Sell your Home Quickly?
+      </h1>
+      
+      <!-- Subheading -->
+      <p class="text-xl text-gray-100 mb-8 max-w-2xl mx-auto animate-fade-in">
+        We buy houses in any condition, anywhere. Get your fair cash offer today-quick, hassle-free, and on your terms!
+      </p>
+      
+      <!-- CTA Form -->
+      <div class="animate-fade-in max-w-md mx-auto md:max-w-xl">
+        <div class="flex flex-col sm:flex-row gap-3">
+          <input 
+            class="flex-grow px-5 py-3 rounded-full border border-gray-300 focus:border-amber-400 focus:ring-2 focus:ring-amber-200 outline-none transition-all text-gray-700 placeholder-gray-400"
+            type="text" 
+            placeholder="Enter your Dayton property address"
+            id="home-address-field"
+            onkeydown="if(event.key === 'Enter') { carryAddress(document.getElementById('home-address-field').value)}"
+          >
+          <button 
+            class="bg-amber-600 hover:bg-amber-700 text-white font-bold px-6 py-3 rounded-full transition-all whitespace-nowrap"
+            onclick="carryAddress(document.getElementById('home-address-field').value)"
+          >
+            Get Your Cash Offer
+            <svg class="w-4 h-4 inline ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+            </svg>
+          </button>
+        </div>
+        <p class="text-gray-300 text-xs mt-3">
+          {# Serving all of Montgomery County • Dayton • Kettering • Beavercreek #}
+        </p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
