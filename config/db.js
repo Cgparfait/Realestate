@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const mongoURI = 'mongodb+srv://parfait:kigali123@cluster0.vfapm.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+const mongoURI = 'mongodb+srv://parfait:kigali123@cluster0.vfapm.mongodb.net/?appName=Cluster0';
 
 mongoose.connect(mongoURI).then(() => {
     console.log('Connected to MongoDB');
