@@ -202,17 +202,24 @@ gsap.from("#contact form", {
   },
 });
 
-// Mobile Menu Toggle
-const mobileMenuButton = document.getElementById('mobile-menu-button');
-const mobileMenu = document.getElementById('mobile-menu');
 
-function hideNavbar() {
-  mobileMenu.classList.toggle('hidden');
-}
+document.getElementById("year").textContent = new Date().getFullYear();
 
-mobileMenuButton.addEventListener('click', () => {
-  mobileMenu.classList.toggle('hidden');
+document.addEventListener("DOMContentLoaded", () => {
+  // Mobile Menu Toggle
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  function hideNavbar() {
+    mobileMenu.classList.toggle('hidden');
+  }
+
+  mobileMenuButton.addEventListener('click', () => {
+    console.log(mobileMenu)
+    mobileMenu.classList.toggle('hidden');
+  });
 });
+
 
 // Navbar Scroll Effect
 const navbar = document.querySelector('.navbar');
@@ -288,11 +295,11 @@ document.addEventListener('DOMContentLoaded', function () {
   function validateInput(input, validationFn, errorMessage) {
     const isValid = validationFn(input.value);
     if (!isValid) {
-      input.classList.add('border-2');      
+      input.classList.add('border-2');
       input.classList.add('border-red-500');
       input.setCustomValidity(errorMessage);
     } else {
-      input.classList.remove('border-2');      
+      input.classList.remove('border-2');
       input.classList.remove('border-red-500');
       input.setCustomValidity('');
     }
